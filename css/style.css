@@ -91,10 +91,14 @@ html{
     padding: 0 12px;
 }
 
+#slibar{
+    margin-top: 60px;
+}
+
 #content{
     background-image: linear-gradient(to left, #161313 0%, #5b5a61 100%);
     height: 2800px;
-    margin-top: 60px
+    
 }
 
 #content .container_type_cineme{

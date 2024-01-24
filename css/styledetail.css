@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#content_detail{  
+    padding: 80px 100px;
+    background-image: linear-gradient(to right, #434343 0%, black 80%);
+}
+
+#content_detail img{
+    width: 29.999999%;
+    border-radius: 12px;
+    box-shadow: rgba(172, 171, 171, 0.35) 0px 5px 15px;;
+}
+#content_detail .info{
+    padding: 0 60px;
+    width: 69.999999%;
+    float: right;
+    font-size: 18px;
+    color: #fff;
+}
+
+#content_detail .name_film_detail{
+    font-size: 32px;
+    opacity: 0.9;
+}
+
+#content_detail button{
+    padding:16px 24px;
+    border-radius: 8px;
+    background-color: red;
+    margin: 16px 0;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0.8;
+    font-size: 18px;
+}
+
+#content_detail .director, .professor, .category, .nation{
+    margin: 16px 0;
+    opacity: 0.7;
+}
+
+#content_detail .description_container{
+    padding: 20px 20px;
+}
+
+#content_detail .description_namefilm{
+    color:#f1b722;
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+#content_detail .description_container .description{
+    color: azure;
+    font-size: 18px;
+    padding: 0 120px 0 40px;
+    line-height: 2;
+    opacity: 0.5;
+}

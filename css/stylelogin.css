@@ -1,0 +1,92 @@
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    width: 100%;
+    background-image: url(../uploads/11.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+#main .logo{
+    display: inline-block;
+    font-size: 42px;
+    letter-spacing: 5px;
+    font-weight: lighter;
+    line-height: 60px;
+    padding: 20px 20px;
+    color: #fff;
+}
+
+#main .container{
+    position: absolute;
+    right: 175px;
+    top: 175px;
+    width: 425px;
+    height: 273px;
+    background-color: rgba(51, 51, 51, 0.5);;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#main .container .title_login{
+    font-size: 32px;
+    text-align: center;
+    padding: 20px 0;
+    font-weight: bold;
+    }
+
+#main .container .box{
+    font-size: 18px;
+    padding: 10px 10px;
+}
+
+#main .box .distance{
+    padding-right: 5px;
+}
+
+#main .box input{
+    width: 230px;
+    height: 35px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+#main .signin input{
+    margin-top: 35px; 
+    width: 100%;
+    font-size: 20px;
+    background-color: rgb(229, 9, 20);
+    color: aliceblue;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+
+#main .register a{
+    color: #fff;
+    padding-left: 10px;
+}
+
+.error{
+    color: greenyellow;
+    font-size: 12px;
+    margin-left: 92px;
+}
+
+label, .title_login{
+    color: #fff;
+}
+/* span{
+    display: block;
+} */
+
+/* input{
+    display: block;
+} */

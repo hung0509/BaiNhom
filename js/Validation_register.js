@@ -1,3 +1,4 @@
+
 const btnRegister = document.getElementById("button-sign-up");
 const firstnameEle = document.getElementById('firstname');
 const lastnameEle = document.getElementById('lastname');
@@ -6,36 +7,35 @@ const usernameEle = document.getElementById('username');
 const passwordEle = document.getElementById('password');
 const repasswordEle = document.getElementById('repassword');
 const inputEles = document.querySelectorAll('.input-row');
+const valueJS = document.getElementById('bienjs');
 
-btnRegister.addEventListener('click', function(){
+btnRegister.addEventListener('click', function check() {
     // Array.from(inputEles).map((ele) =>
     // ele.classList.remove('success', 'error')
     // );
-    
-    let isValid = checkValid();
-
-    if(isValid){
-        alert('Đăng ký thành công');
-    }
+    let isValid = false;
+    isValid = checkValid();
+    alert(isValid);
+    document.getElementById('bienjs').value = isValid;// Gán giá trị cho valueJS. sau đó dùng $_POST trong php để lấy nó ra
 });
 
-function setError(ele, mes){
+function setError(ele, mes) {
     let parentEle = ele.parentNode;
     console.log(parentEle);
     parentEle.classList.add('error');
     parentEle.querySelector('small').innerText = mes;
 }
 
-function setSucces(ele){
+function setSucces(ele) {
     ele.parentNode.classList.add('success');
 }
 
-function isEmail(email){
+function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
 
-function checkValid(){
+function checkValid() {
     let firstnameValue = firstnameEle.value;
     let lastnameValue = lastnameEle.value;
     let emailValue = emailEle.value;
@@ -45,54 +45,54 @@ function checkValid(){
 
     let isCheck = true;
 
-    if(firstnameValue == ''){
+    if (firstnameValue == '') {
         setError(firstnameEle, 'Firstname is empty');
         isCheck = false;
-    }else{
+    } else {
         setSucces(firstnameEle);
     }
 
-    if(lastnameValue == ''){
+    if (lastnameValue == '') {
         setError(lastnameEle, 'Lastname is empty');
         isCheck = false;
-    }else{
+    } else {
         setSucces(lastnameEle);
     }
 
-    if(emailValue == ''){
+    if (emailValue == '') {
         setError(emailEle, 'Email is empty');
         isCheck = false;
-    }else if(!isEmail(emailValue)){
+    } else if (!isEmail(emailValue)) {
         setError(emailEle, 'Email is invalid');
         isCheck = false;
-    }else{
+    } else {
         setSucces(emailEle)
     }
 
-    if(usernameValue == ''){
+    if (usernameValue == '') {
         setError(usernameEle, 'Username is empty');
         isCheck = false;
-    }else{
+    } else {
         setSucces(usernameEle);
     }
 
-    if(passwordValue == ''){
+    if (passwordValue == '') {
         setError(passwordEle, 'Password is emmpty');
         isCheck = false;
-    }else if(passwordValue.length < 8){
+    } else if (passwordValue.length < 8) {
         setError(passwordEle, 'Has minimum 8 characters in length');
         isCheck = false;
-    }else{
+    } else {
         setSucces(passwordEle);
     }
 
-    if(repasswordValue == ''){
+    if (repasswordValue == '') {
         setError(repasswordEle, 'Please confirm password!');
         isCheck = false;
-    }else if(repasswordValue != passwordValue){
+    } else if (repasswordValue != passwordValue) {
         setError(repasswordEle, 'Passwords do not match');
         isCheck = false;
-    }else{
+    } else {
         setSucces(repasswordEle);
     }
 

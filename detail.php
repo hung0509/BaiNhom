@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="main_detail">
-        <? require  "./header.php"?>
+        <? require  "./inc/header.php"?>
 
         <!-- Content -->
         <div id="content_detail">
@@ -36,7 +36,7 @@
                 <div class="professor">Diễn viên: <?= $result_film->actors?></div>
                 <div class="category">Thể loại:  <?=$result_film->getMovieGenres($conn)?></div>
                 <div class="nation">Quốc gia: <?= $result_film->nation?></div>
-                <button name="play" type="button">Xem phim</button>     
+                <a class="trailer" href="">Trailer</a>    
            </div>
            <div class="description_container">
             <h3 class="description_namefilm">Tóm tắt nội dung</h3>

@@ -34,6 +34,21 @@
             }
         }
 
+        public static function getNamebyID($conn, $id){
+            try{
+                $sql = "select namegenre from genres  where id_genre=:id";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+                $stmt->setFetchMode(PDO::FETCH_COLUMN, 0);
+                $stmt->execute();
+                $g = $stmt->fetch();
+                return $g;
+            }catch(PDOException $e){
+                $e->getMessage();
+                return false;
+            }
+        }
+
     }
 
 ?>

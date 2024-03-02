@@ -16,20 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $passwordError = "Password is empty";
             $check = false;
         }
-
         $conn = require "./inc/db.php";
         if ($conn && $check) {
-            // echo "Kết nối thành công <br/>";
-            $rs = User::authenticate($conn, $username, $password);
-            if ($rs) {
-                $_SESSION['user'] = $rs;
-            } else {
-                $usernameError = "Username or password is wrong";
-                $passwordError = "Username or password is wrong";
+            $u = User::authenticate($conn, $username, $password);
+            if($u){
+                // Tạo session logged_in
+                Auth::login();
+                //Tạo session user
+                $_SESSION['user'] = $u;
+                header("Location: index.php");
+            }else{
+                Dialog::show("Invalid username or password");
             }
-        }
-        if (isset($_SESSION['user'])) {
-            header('Location: index.php');
         }
     }
 }

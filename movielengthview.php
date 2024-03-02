@@ -83,9 +83,9 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
                 <div class="row">
                     <?php for ($i = 0; $i < 10; $i++) : ?>
                         <?php if (isset($list_movie[$i])) : ?>
-                            <div class="col_4">
+                            <div class="col_4 setupFilm">
                                 <a href="./detail.php?id_movie=<? echo $list_movie[$i]->id_movie ?>">
-                                    <img src=<?= $list_movie[$i]->imagefile ?> alt="Hình ảnh minh họa">
+                                    <img class="setupImage" src=<?= $list_movie[$i]->imagefile ?> alt="Hình ảnh minh họa">
                                     <div class="name_film"><?= $list_movie[$i]->moviename ?></div>
                                 </a>
                             </div>

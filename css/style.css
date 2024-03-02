@@ -82,14 +82,16 @@ html{
 }
 
 .fix1{
-    position: relative;
+    /* position: relative; */
     top: 12px;
 }
 
 .fix2{
     position: absolute;
-    top: 14px;
-    right: 18px;
+    position: absolute;
+    top: 16px;
+    right: 21px;
+    background: #fff;
     background: #fff;
 }
 
@@ -317,6 +319,14 @@ html{
 .pages a:hover{
     background-color: #f1b722;
     color: #fff;
+}
+
+.setupFilm{
+    height: 325px;
+}
+
+.setupImage{
+    height: 300px !important;
 }
 
 

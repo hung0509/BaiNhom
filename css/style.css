@@ -26,14 +26,14 @@ html{
 }
 
 #header .logo{
-    display: inline-block;
-    font-size: 28px;
-    letter-spacing: 5px;
-    font-weight: lighter;
     padding: 0 20px;
-    transform: translateY(-65%);
+    float: left;
+    line-height: 60px;
 }
 
+#header .logo-link img{
+    padding: 10px 0;
+}
 
 #header .navigation .header_menu{
     position: relative;

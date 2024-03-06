@@ -20,7 +20,13 @@ $result_Genre = Genre::getAll($conn);
 <body>
     <div id="header">
         <div class="navigation">
-            <div class="logo">MyProject</div>
+            <!-- <div class="logo">MyProject</div> -->
+            <div class="logo">
+                <a href="index.php" class="logo-link">
+                    <img src="./uploads/logo2.png" alt="GARENA">
+                    <!-- LOGO -->
+                </a>
+            </div>
             <ul class="header_menu">
                 <li><a href="./index.php">Trang chủ</a></li>
                 <li class='type_menubar'>

@@ -167,15 +167,16 @@ html{
 }
 
  .name_film{
-     font-size: 17px;
-     font-weight: bold;
-     padding-top: 4px;
-     color: #fff;
-     opacity: 0.6;
-     transition: 0.5s;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 4px;
+    color: #fff;
+    opacity: 0.6;
+    transition: 0.5s;
 }
 
-.col_4:hover img{
+
+/* .col_4:hover img{
     transform: scale(1.2);
 }
 
@@ -183,6 +184,22 @@ html{
     transform: translateY(24px);
     color: #434343;
     font-size: 24px;
+} */
+
+.col_4 img::before {
+    transition: .5f;
+    transform: scale(.9);
+    z-index: -1;
+}
+
+.col_4 img:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ffee10;
+}
+
+.col_4 img:hover {
+    color: #ffee10;
+    box-shadow: 0 0 15px #ffee10;
 }
 
 #header .menubar{

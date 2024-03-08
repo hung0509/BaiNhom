@@ -43,8 +43,8 @@
                 $stmt->bindValue(':id_movie', $id_movie, PDO::PARAM_INT);
                 $stmt->setFetchMode(PDO::FETCH_CLASS, 'Movie');
                 if($stmt->execute()){
-                    $book = $stmt->fetch();
-                    return $book;
+                    $movie = $stmt->fetch();
+                    return $movie;
                 } 
             }catch(PDOException $e){
                 echo $e->getMessage();
@@ -71,6 +71,21 @@
                     }
                 }
                 return $category;
+            }catch(PDOException $e){
+                $e->getMessage();
+                return false;
+            }
+        }
+
+        public static function searchByName($conn, $namefilm){
+            try{
+                $sql = "select * from movies where moviename like '$namefilm%';";
+                $stmt = $conn->prepare($sql);
+                $stmt->setFetchMode(PDO::FETCH_CLASS, 'Movie');
+                if($stmt->execute()){
+                    $movie = $stmt->fetchAll();
+                    return $movie;
+                } 
             }catch(PDOException $e){
                 $e->getMessage();
                 return false;

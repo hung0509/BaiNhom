@@ -26,14 +26,14 @@ html{
 }
 
 #header .logo{
-    display: inline-block;
-    font-size: 28px;
-    letter-spacing: 5px;
-    font-weight: lighter;
     padding: 0 20px;
-    transform: translateY(-65%);
+    float: left;
+    line-height: 60px;
 }
 
+#header .logo-link img{
+    padding: 10px 0;
+}
 
 #header .navigation .header_menu{
     position: relative;
@@ -89,8 +89,8 @@ html{
 .fix2{
     position: absolute;
     position: absolute;
-    top: 16px;
-    right: 21px;
+    top: 18px;
+    right: 20px;
     background: #fff;
     background: #fff;
 }
@@ -104,7 +104,7 @@ html{
     padding: 3px;
 }
 
-#header #search{
+#header #movie_search{
     width: 250px;
     height: 33px;
     border-radius: 16px;

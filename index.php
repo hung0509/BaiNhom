@@ -23,9 +23,9 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
 
         <? require "./inc/header.php"; ?>
 
-        <div id="slibar">
+        <!-- <div id="slibar">
 
-        </div>
+        </div> -->
 
         <div id="content">
             <!-- Phim bộ -->
@@ -98,7 +98,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
             <div id="phimLe" class="container_type_cineme">
                 <div class="spacecolor"></div>
                 <div class="name_type">PHIM LẺ MỚI
-                    <a href="./login.php">Xem thêm</a>
+                    <a href="./movielengthview.php?movie-length=0&index-page=0">Xem thêm</a>
                 </div>
 
                 <div class="row">

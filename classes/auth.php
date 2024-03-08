@@ -1,14 +1,16 @@
 <?
     class Auth{
         //Kiểm tra đăng nhập 
-        public static function isLoggedIn(){
+        public static function isLoggedIn() : bool {
             return isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
-        }
-
-        // Bắt buộc phải đăng nhập 
-        public static function requireLogin(){
-            if(!Auth::isLoggedIn()){
-                return "Please login to continue !";
+          }
+      
+        // Bắt buộc phải đăng nhập
+        public static function requireLogin() {
+            if (!static::isLoggedIn()) {
+                echo "<script>alert('" . "Please! Login to continue" . "');</script>";
+                echo "<script>window.location.href='./login.php';</script>";
+                die();
             }
         }
 

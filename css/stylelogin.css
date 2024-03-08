@@ -59,6 +59,7 @@ body{
     margin-left: 10px;
 }
 
+
 #main .signin input{
     margin-top: 35px; 
     width: 100%;
@@ -69,6 +70,10 @@ body{
     cursor: pointer;
 }
 
+#main .register p{
+    color: #fff;
+    padding-left: 10px;
+}
 
 #main .register a{
     color: #fff;
@@ -91,3 +96,10 @@ label, .title_login{
 /* input{
     display: block;
 } */
+
+
+.forgot-password a{
+    text-decoration: none;
+    color: #fff;
+}
+

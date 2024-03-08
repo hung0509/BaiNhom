@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div id="main">
-        <div class="logo">MyProject</div>
+        <div class="logo">My Project</div>
         <form name="frmLOGIN" action="" method="post">
             <div class="container">
                 <div class="title_login"><i class='bx bxs-user'></i> LOGIN</div>
@@ -62,10 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input name="password" id="pasword" type="password" placeholder="Enter your passowrd" />
                     <? echo "<span class='error'> $passwordError </span> " ?>
                 </div>
-                <div class="register"><a href="./register.php">Do not have an account?</a></div>
-
+                <div class="remember-me password-forgot">
+                    <div class="forgot-password"><a href="./reset-password/password-reset.php">Forgot password?</a></div>
+                </div>
                 <div class="signin">
                     <input name="submit" id="login" type="submit" value="Sign In">
+                </div>
+                <div class="register">
+                    <p>Not a user?<a href="./register.php">Sign up</a></p>
                 </div>
             </div>
         </form>

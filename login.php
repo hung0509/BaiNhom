@@ -24,7 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Auth::login();
                 //Tạo session user
                 $_SESSION['user'] = $u;
-                header("Location: index.php");
+                if($u->id_role == 2){
+                    header("Location: ./admin/adminhome.php");
+                }
+                else{
+                    header("Location: ./index.php");
+                }
             }else{
                 Dialog::show("Invalid username or password");
             }

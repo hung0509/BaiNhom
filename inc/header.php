@@ -6,16 +6,15 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 }
 $lengthOfGenre = Genre::count($conn);
 $result_Genre = Genre::getAll($conn);
+$all_film = Movie::getALl($conn); // Lấy ra tất cả các phim
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $name_film = $_GET['movie_search'];
+    if (isset($_GET['button-search'])) {
+        header("Location: ./movielengthview.php?name_movie=" . $name_film . "&index-page=0");
+    }
+}
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 
 <body>
     <div id="header">
@@ -77,11 +76,25 @@ $result_Genre = Genre::getAll($conn);
             <div class="header_dangNhap">
                 <div class="containersearch">
                     <?php if (isset($_GET["select-genre"])) : ?>
-                        <input class="fix1" type="search" name="search" id="search" placeholder="Tìm kiếm....">
-                        <button class="fix2 class="search_button" type="button"><i class='bx bx-search'></i></button>
+                        <input class="fix1" list="topics" type="text" name="movie_search" id="movie_search" placeholder="Tìm kiếm....">
+                        <datalist id="topics">
+                                <?php for ($i = 0; $i < count($all_film); $i++) : ?>
+                                    <? $name_film = $all_film[$i]->moviename ?>
+                                    <option value="<?= $name_film ?>">
+                                    <?php endfor; ?>
+                            </datalist>
+                        <button class="fix2 search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
                     <?php else : ?>
-                        <input type="search" name="search" id="search" placeholder="Tìm kiếm....">
-                        <button class="search_button" type="button"><i class='bx bx-search'></i></button>
+                        <form action="">
+                            <input type="text" list="topics" name="movie_search" id="movie_search" placeholder="Tìm kiếm....">
+                            <datalist id="topics">
+                                <?php for ($i = 0; $i < count($all_film); $i++) : ?>
+                                    <? $name_film = $all_film[$i]->moviename ?>
+                                    <option value="<?= $name_film ?>">
+                                    <?php endfor; ?>
+                            </datalist>
+                            <button class="search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
+                        </form>
                     <?php endif; ?>
                 </div>
                 <?php if (Auth::isLoggedIn()) : ?>

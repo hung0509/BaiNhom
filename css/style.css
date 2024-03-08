@@ -89,8 +89,8 @@ html{
 .fix2{
     position: absolute;
     position: absolute;
-    top: 16px;
-    right: 21px;
+    top: 18px;
+    right: 20px;
     background: #fff;
     background: #fff;
 }
@@ -104,7 +104,7 @@ html{
     padding: 3px;
 }
 
-#header #search{
+#header #movie_search{
     width: 250px;
     height: 33px;
     border-radius: 16px;
@@ -119,7 +119,6 @@ html{
 #content{
     background-image: linear-gradient(to left, #161313 0%, #5b5a61 100%);
     height: 2800px;
-    
 }
 
 #content .container_type_cineme{

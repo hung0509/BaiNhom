@@ -25,7 +25,6 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
         <? require "./inc/header.php"; ?>
 
         <!-- <div id="slibar">
-
         </div> -->
 
         <div id="content">

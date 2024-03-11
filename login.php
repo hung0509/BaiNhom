@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Auth::login();
                 //Tạo session user
                 $_SESSION['user'] = $u;
-                if($u->id_role == 2){
+                if($u->id_role == 1){
                     header("Location: ./admin/adminhome.php");
                 }
                 else{

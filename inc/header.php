@@ -9,8 +9,8 @@ $result_Genre = Genre::getAll($conn);
 $all_film = Movie::getALl($conn); // Lấy ra tất cả các phim
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $name_film = $_GET['movie_search'];
     if (isset($_GET['button-search'])) {
+        $name_film = $_GET['movie_search'];
         header("Location: ./movielengthview.php?name_movie=" . $name_film . "&index-page=0");
     }
 }

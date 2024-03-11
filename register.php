@@ -1,6 +1,5 @@
 <?
         require "inc/init.php";
-        $check = 'Hello';
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             // Lấy giá trị bienjs ra
             if(isset($_GET['submit'])){

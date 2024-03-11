@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //Tạo session user
                 $_SESSION['user'] = $u;
                 if($u->id_role == 1){
-                    header("Location: ./admin/adminhome.php");
+                    header("Location: ./admin/adminhome.php?movie_search=");
                 }
                 else{
                     header("Location: ./index.php");

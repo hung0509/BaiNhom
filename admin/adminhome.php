@@ -1,4 +1,26 @@
+<?php
+require "../inc/init.php";
+//Bắt buộc phải là tài khoản admin thì mới vào được page admin panel giùm tui nha :)))
+Auth::requireLogin();
+$conn = require('../inc/db.php');
+$name_film = "";
+$name_film = $_GET['movie_search'];
+$movies = Movie::searchByName($conn, $name_film);
 
+if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
+  $u = $_SESSION['user'];
+} else {
+  $u = null;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+  if (isset($_GET['button-search'])) {
+    header("Location: ./adminhome.php?movie_search=" . $name_film);
+  }
+}
+
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -10,20 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>crud dashboard</title>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <!----css3---->
-  <link rel="stylesheet" href="../css/custom.css">
 
-
-  <!--google fonts -->
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-
-  <!--google material icon-->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -31,34 +40,10 @@
 
 
   <div class="wrapper">
-
-
     <div class="body-overlay"></div>
-
     <!-------------------------sidebar------------>
     <!-- Sidebar  -->
-    <nav id="sidebar">
-      <div class="sidebar-header">
-        <h3><img src="img/logo.png" class="img-fluid" /><span>Web phim</span></h3>
-      </div>
-      <ul class="list-unstyled components">
-        <li class="active">
-          <a href="#" class="dashboard"><i class="material-icons">dashboard</i>
-            <span>Danh sách phim</span></a>
-        </li>
-
-        <li class="">
-          <a href="#"><i class="material-icons">date_range</i><span>Thêm phim</span></a>
-        </li>
-
-        <li class="">
-          <a href="#"><i class="material-icons">library_books</i><span>Hỗ trợ
-            </span></a>
-        </li>
-      </ul>
-
-
-    </nav>
+    <? require "./adminheader.php"; ?>
 
     <!--------page-content---------------->
 
@@ -85,9 +70,9 @@
               <div class="xp-searchbar">
                 <form>
                   <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search">
+                    <input type="text" name="movie_search" class="form-control" placeholder="Search">
                     <div class="input-group-append">
-                      <button class="btn" type="submit" id="button-addon2">GO</button>
+                      <button class="btn" name="button-search" type="submit" id="button-addon2">GO</button>
                     </div>
                   </div>
                 </form>
@@ -110,7 +95,7 @@
                       <ul class="dropdown-menu small-menu">
 
                         <li>
-                          <a href="#"><span class="material-icons">
+                          <a href="../logout.php"><span class="material-icons">
                               logout</span>Logout</a>
                         </li>
                       </ul>
@@ -139,21 +124,11 @@
                     <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
                       <h2 class="ml-lg-2">Manage Movie</h2>
                     </div>
-                    <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
-                      <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal">
-                        <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
-                    </div>
                   </div>
                 </div>
                 <table class="table table-striped table-hover">
                   <thead>
                     <tr>
-                      <th>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="selectAll">
-                          <label for="selectAll"></label>
-                        </span>
-                      </th>
                       <th>STT</th>
                       <th>Tên phim</th>
                       <th>Đạo diễn</th>
@@ -164,32 +139,38 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- ĐIền data -->
-                    <tr>
-                      <td>
-                        <span class="custom-checkbox">
-                          <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                          <label for="checkbox1"></label>
-                        </span>
-                      </td>
-                      <td>Thomas Hardy</td>
-                      <td>thomashardy@mail.com</td>
-                      <td>89 Chiaroscuro Rd, Portland, USA</td>
-                      <td>(171) 555-2222</td>
-                      <td>
-                        <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                          <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                          <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                      </td>
-                    </tr>
+                    <? static $i = 1; ?>
+                    <? foreach ($movies as $m) : ?>
+                      <tr>
+                        <td align="center"><? echo $i++ ?></td>
+                        <td id="admin_nameFilm"><? echo $m->moviename ?></td>
+                        <td><? echo $m->director ?></td>
+                        <td><? echo $m->actors ?></td>
+                        <td><? echo $m->nation ?></td>
+                        <td>
+                          <img src=<?= "." . $m->imagefile ?> alt="Hình ảnh" alt="" width="100" height="100">
+                        </td>
+                        <td>
+                          <div class="row">
+                            <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
+                              <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                            </a>
+                            <form action="" method="post">
+                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
+                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                              </a>
+                            </form>
+
+                          </div>
+                        </td>
+                      </tr>
+                    <? endforeach; ?>
                   </tbody>
                 </table>
-                
+
               </div>
             </div>
           </div>
-
 
           <!---footer---->
 
@@ -227,3 +208,4 @@
 </body>
 
 </html>
+

@@ -7,7 +7,7 @@ class User
     private $email;
     private $firstname;
     private $lastname;
-    private $id_role;
+    public $id_role;
 
 
     public function getName()

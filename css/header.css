@@ -1,0 +1,198 @@
+/* Trang index.php */
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+#header {
+    width: 100%;
+    background-image: linear-gradient(-90deg, rgb(112,128,144),	rgb(211,211,211));
+    color: #000; 
+    height: 60px;
+    position: fixed;
+    display: inline-flex;
+    z-index: 1;
+}
+
+#header .header-logo{
+    width: 15%;
+}
+
+#header .header-menu{
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+#header .header-search{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header .header-login{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+#header .header-logo .logo{
+   width:100%;
+   height:100%;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+#header .header-menu .menu{
+    position: relative;
+    display: inline-flex;
+    list-style: none;
+}
+
+#header .header-menu .menu li{ 
+    font-size: 1.2vw;
+    font-weight: bold;
+    padding: 0 12px;
+    display: flex;
+    line-height: 60px;
+}
+
+#header .header-menu .menu li a{
+    text-decoration: none;
+    color: #000;
+    position: relative;
+}
+
+
+
+#header .header-menu .menubar{
+    display: none;
+    position: absolute;
+    background-image: linear-gradient(-90deg, rgb(112,128,144),   	rgb(211,211,211));
+    top: 60px;
+    right: -145px;
+    font-weight: 300;
+    width: 550px;
+    border-radius: 4px;
+  
+}
+
+#header .header-menu .menubar .row_3,
+#header .menunation .row_3{
+    display: flex;
+    padding: 0px 5%;
+}
+
+
+#header .header-menu .menubar li, 
+#header .header-menu .menunation li{
+ 
+  list-style: none;
+  line-height: 60px;
+  /* margin: 0 20px; */
+}
+
+#header .header-menu .menubar li a,
+#header .header-menu .menunation li a{
+    font-size: 15px;
+  }
+#header .menubar .col_3:hover {
+    opacity: 1;
+}
+/**/
+
+.col_3{
+    width: 33.33333%;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+
+#header .type_menubar:hover .menubar{
+    display: block;
+    align-items: center;
+}
+
+#header .menunation{
+    display: none;
+    /* display: block; */
+    position: absolute;
+    background-image: linear-gradient(-90deg, rgb(112,128,144),   	rgb(211,211,211));
+    font-weight: 300;
+    top: 60px;
+    right: -150px;
+    width: 475px;
+    border-radius: 4px;
+}
+
+#header .menunation li a{
+   font-size: 1vw;
+  }
+
+#header .menunation li a:hover{
+    color: white;
+}
+#header .menubar .col_3:hover {
+    opacity: 1;
+}
+
+#header .type_menubar:hover .menunation{
+    display: block;
+    align-items: center;
+}
+
+/* css header search box */
+#header .header-search .box-search{
+    width: 90%;
+    position: relative;
+}
+
+#header .header-search .box-search input{
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 50px;
+    outline: none;
+}
+
+#header .header-search .box-search button{
+    padding: 5px 10px;
+    border-radius: 50px;
+    outline: none;
+    position: absolute;
+    right: 0;
+    background: none;
+    cursor: pointer;
+}
+
+#header .header-search .box-search button:hover{
+    color: blue;
+}
+
+/* css header login/register */
+#header .header-login .box-login{
+    width: 90%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vw;
+    font-weight: bold;
+}
+#header .header-login .box-login a{
+    margin: 0 5px;
+    color: white;
+    text-decoration: none;
+}
+
+#header .header-login .box-login a:hover{
+    text-decoration: underline;
+}

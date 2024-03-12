@@ -23,6 +23,8 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 </head>
 
 <body>
@@ -58,7 +60,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
     <div id="main">
         <div id="slibar"></div>
         <div id="content_admin_panel">
-            <table>
+            <table id="datatable">
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -104,6 +106,15 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
         </div>
     </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+
+    <script>
+        $("#datatable").dataTable({
+
+        })
+    </script>
+    
 </body>
 
 </html>

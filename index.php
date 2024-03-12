@@ -14,13 +14,14 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stylefooter.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <title>MyProject</title>
 </head>
 
-<body>
-    <div id="main">
+<body style="position:relative">
+    <!-- <div id="main"> -->
 
         <? require "./inc/header.php"; ?>
 
@@ -118,10 +119,10 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
             </div>
         </div>
 
-        <div id="footer">
-
-        </div>
-    </div>
+        <!-- <div id="footer"> -->
+                <? require("./inc/footer.php"); ?>
+        <!-- </div> -->
+    <!-- </div> -->
 </body>
 
 </html>

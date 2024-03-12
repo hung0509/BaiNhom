@@ -34,12 +34,12 @@
         </div>
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="#" class="dashboard"><i class="material-icons">dashboard</i>
+                <a href="./adminhome.php?movie_search=" class="dashboard"><i class="material-icons">dashboard</i>
                     <span>Danh sách phim</span></a>
             </li>
 
             <li class="">
-                <a href="#"><i class="material-icons">date_range</i><span>Thêm phim</span></a>
+                <a href="./addfilm.php"><i class="material-icons">date_range</i><span>Thêm phim</span></a>
             </li>
 
             <li class="">

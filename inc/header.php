@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 ?>
 
-<body>
     <div id="header">
         <div class="navigation">
             <!-- <div class="logo">MyProject</div> -->
@@ -105,13 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <a href="logout.php">Đăng xuất</a>
                         </div>
                     </div>
-
                 <?php else : ?>
                     <a href="./login.php"><i class='bx bx-user'></i>Đăng nhập/Đăng ký</a>
                 <?php endif; ?>
             </div>
         </div>
     </div>
-</body>
 
-</html>
+

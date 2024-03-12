@@ -39,6 +39,12 @@ class Movie
         }
     }
 
+    public function checkImage(){
+        if(!file_exists(".". $this->imagefile)){
+            $this->imagefile = "./uploads/image.png";
+        }
+    }
+
     public static function getId($conn, $id_movie)
     {
         try {
@@ -136,11 +142,11 @@ class Movie
     }
 
     //Xóa bằng id
-    public function deleteById($conn, $id){
+    public function deleteById($conn){
         try {
             $sql = "delete from movies where id_movie =:id";
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', $this->id_movie, PDO::PARAM_INT);
             if ($stmt->execute()) {
               return true;
             }
@@ -192,14 +198,16 @@ class Movie
     {
         try {
             // Hiển thị limit record từ dòng offer
-            $sql = "select * from movies where nation=:nation order by moviename asc
-                limit :limit 
-                offset :offset;";
+            // $sql = "select * from movies where nation=:nation order by moviename asc
+            //     limit :limit 
+            //     offset :offset;";
+                $sql = "select * from movies where nation=:nation order by moviename asc
+                ";
 
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':nation', $nation, PDO::PARAM_STR);
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            // $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            // $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Movie');
             if ($stmt->execute()) {
                 $movie = $stmt->fetchAll();

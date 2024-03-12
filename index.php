@@ -16,6 +16,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
     <link rel="stylesheet" href="./css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styleheader.css">
     <title>MyProject</title>
 </head>
 
@@ -119,7 +120,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
         </div>
 
         <div id="footer">
-
+                            <div>abstract</div>
         </div>
     </div>
 </body>

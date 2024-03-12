@@ -11,7 +11,7 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
     } else {
         $name = "Phim lẻ";
     }
-    $list_movie = Movie::getPagingByLength($conn, 10, $index_page * 10, $name);
+    $list_movie = Movie::getPagingByLength($conn, 12, $index_page * 12, $name);
     $countFilms = count($list_movie);
 } else if (isset($_GET['index-page']) && $_GET['index-page'] >= 0 && isset($_GET["select-nation"])) {
     $index_page = $_GET['index-page'];
@@ -45,13 +45,13 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
             $name = "Khác";
             break;
     }
-    $list_movie = Movie::getPagingByNation($conn, 10, $index_page * 10, $name);
+    $list_movie = Movie::getPagingByNation($conn, 12, $index_page * 12, $name);
     $countFilms = count($list_movie);
 } else if (isset($_GET['index-page']) && $_GET['index-page'] >= 0 && isset($_GET["select-genre"])) {
     $var = $_GET['select-genre'];
     $index_page = $_GET['index-page'];
     $name = Genre::getNamebyID($conn, $var);
-    $list_movie = Movie::getPagingByGenre($conn, 10, $index_page * 10, $var);
+    $list_movie = Movie::getPagingByGenre($conn, 12, $index_page * 12, $var);
     $countFilms = count($list_movie);
 } else if (isset($_GET['index-page']) && $_GET['index-page'] >= 0 && isset($_GET["name_movie"])) {
     $name = $_GET['name_movie'];
@@ -60,7 +60,10 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
     $countFilms = count($list_movie);
 }
 //Khi chọn trang
-$countPages = $countFilms / 10;
+$countPages = $countFilms / 12;
+if($countFilms%12 != 0){
+    $countPages+=1;
+}
 ?>
 
 
@@ -72,6 +75,7 @@ $countPages = $countFilms / 10;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/styleheader.css">
     <title>Document</title>
 </head>
 
@@ -85,7 +89,7 @@ $countPages = $countFilms / 10;
             <?php if (!empty($list_movie)) : ?>
                 <?php for ($x = 0; $x < 1; $x++) : ?>
                     <div class="row">
-                        <?php for ($i = 0; $i < 10; $i++) : ?>
+                        <?php for ($i = 0; $i < 12; $i++) : ?>
                             <?php if (isset($list_movie[$i])) : ?>
                                 <div class="col_4 setupFilm">
                                     <a href="./detail.php?id_movie=<? echo $list_movie[$i]->id_movie ?>">
@@ -109,16 +113,16 @@ $countPages = $countFilms / 10;
             <div class="pages">
                 <?php for ($i = 0; $i < $countPages; $i++) : ?>
                     <?php if (isset($_GET["movie-length"])) : ?>
-                        <a href="./movielengthview.php?index-page=<?= $i ?>&movie-length=<?= $var ?>"><?= $i ?></a>
+                        <a href="./movielengthview.php?index-page=<?= $i ?>&movie-length=<?= $var ?>"><?= $i + 1?></a>
                     <?php endif; ?>
                     <?php if (isset($_GET["select-nation"])) : ?>
-                        <a href="./movielengthview.php?index-page=<?= $i ?>&select-nation=<?= $var ?>"><?= $i ?></a>
+                        <a href="./movielengthview.php?index-page=<?= $i ?>&select-nation=<?= $var ?>"><?= $i  + 1?></a>
                     <?php endif; ?>
                     <?php if (isset($_GET["select-genre"])) : ?>
-                        <a href="./movielengthview.php?index-page=<?= $i ?>&select-genre=<?= $var ?>"><?= $i ?></a>
+                        <a href="./movielengthview.php?index-page=<?= $i ?>&select-genre=<?= $var ?>"><?= $i  + 1?></a>
                     <?php endif; ?>
                     <?php if (isset($_GET["name-film"])) : ?>
-                        <a href="./movielengthview.php?index-page=<?= $i ?>&name-film=<?= $name ?>"><?= $i ?></a>
+                        <a href="./movielengthview.php?index-page=<?= $i ?>&name-film=<?= $name ?>"><?= $i  + 1?></a>
                     <?php endif; ?>
 
                 <?php endfor; ?>

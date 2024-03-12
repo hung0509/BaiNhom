@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Auth::login();
                 //Tạo session user
                 $_SESSION['user'] = $u;
+                Dialog::show("Đăng nhập thành công!!!");
                 if($u->id_role == 1){
                     header("Location: ./admin/adminhome.php?movie_search=");
                 }

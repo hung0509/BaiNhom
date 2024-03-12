@@ -148,18 +148,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <td><? echo $m->actors ?></td>
                         <td><? echo $m->nation ?></td>
                         <td>
+                          <?php $m->checkImage()?>       
                           <img src=<?= "." . $m->imagefile ?> alt="Hình ảnh" alt="" width="100" height="100">
                         </td>
                         <td>
                           <div class="row">
-                            <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
+                              <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                            </a>
-                            <form action="" method="post">
+                              </a>
                               <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
                                 <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                               </a>
-                            </form>
+                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
+                                Up
+                              </a>
 
                           </div>
                         </td>

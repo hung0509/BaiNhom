@@ -92,7 +92,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
                                 <? endif; ?>
                             </td>
                         </tr>
-                    <? endforeach; ?>
+                    <? endforeach; ?>a  
                 </tbody>
                 <tfoot>
                     <tr>

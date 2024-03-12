@@ -14,12 +14,16 @@ if (isset($_GET['id'])) {
 
 //Khi bấm vào nút Có xóa
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // lấy thông tin chỉnh sửa
-    $id_film = $_POST['id'];
-
-    // goij caapj nhaapj
-    if ($result_film->delete($conn)) {
+    $id_film = $_GET['id'];
+    $oldimage = $result_film->imagefile;
+    $name = $result_film->name_movie;
+    if ($result_film->deleteById($conn)) {
+        if($oldimage){
+            unlink("." . $oldimage);
+        }
         header("Location: ./adminhome.php?movie_search=");
+        Dialog::show("Xoá thành công!");
+        return;
     }
 }
 
@@ -134,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <form action="" method="post">
                                     <button class="btn_delete" type="submit" >Có</button>
                                 </form>
-                                    <button class="btn_delete" type="button"><a href="./adminhome.php">Không</a></button>
+                                    <button class="btn_delete" type="button"><a href="./adminhome.php?movie_search=">Không</a></button>
                             </div>
                         </div>
                     </div>

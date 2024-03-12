@@ -32,6 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result_film->update($conn)) {
         header("Location: ./adminhome.php?movie_search=");
     }
+
+    // $result = $result_film->update($conn);
+    // if($result){
+    //  // true   
+    // }else{
+    //     // false
+    // }
 }
 ?>
 

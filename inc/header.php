@@ -10,22 +10,32 @@ $all_film = Movie::getALl($conn); // Lấy ra tất cả các phim
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['button-search'])) {
-        $name_film = $_GET['movie_search'];
+        $name_film = $_GET['search'];
         header("Location: ./movielengthview.php?name_movie=" . $name_film . "&index-page=0");
     }
 }
 ?>
 
-    <div id="header">
-        <div class="navigation">
-            <!-- <div class="logo">MyProject</div> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/header.css">
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-logo">
             <div class="logo">
-                <a href="index.php" class="logo-link">
-                    <img src="./uploads/logo2.png" alt="GARENA">
-                    <!-- LOGO -->
-                </a>
+                <h1>MyProject</h1>
             </div>
-            <ul class="header_menu">
+        </div>
+        <div class="header-menu">
+        <ul class="menu">
+            
                 <li><a href="./index.php">Trang chủ</a></li>
                 <li class='type_menubar'>
                     <a href="#">Thể loại</a>
@@ -39,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                         <? break; ?>
                                     <?php endif; ?>
                                 <?php endfor; ?>
-                                <div class="clear"></div>
                             </ul>
                         <?php endfor; ?>
                     </div>
@@ -65,50 +74,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <li class="col_3"><a href="./movielengthview.php?select-nation=india&index-page=0">Ấn Độ</a></li>
                             <li class="col_3"><a href="./movielengthview.php?select-nation=us_uk&index-page=0">Âu - Mỹ</a></li>
                             <li class="col_3"><a href="./movielengthview.php?select-nation=dif&index-page=0">Khác</a></li>
-                            <div class="clear"></div>
                         </ul>
                     </div>
                 </li>
-                <li><a href="./index.php#phimBo">Phim bộ</a></li>
-                <li><a href="./index.php#phimLe">Phim lẻ</a></li>
+                <li><a href="./index.php#space1">Phim bộ</a></li>
+                <li><a href="./index.php#space12">Phim lẻ</a></li>
             </ul>
-            <div class="header_dangNhap">
-                <div class="containersearch">
-                    <?php if (isset($_GET["select-genre"])) : ?>
-                        <input class="fix1" list="topics" type="text" name="movie_search" id="movie_search" placeholder="Tìm kiếm....">
-                        <datalist id="topics">
-                                <?php for ($i = 0; $i < count($all_film); $i++) : ?>
-                                    <? $name_film = $all_film[$i]->moviename ?>
-                                    <option value="<?= $name_film ?>">
-                                    <?php endfor; ?>
-                            </datalist>
-                        <button class="fix2 search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
-                    <?php else : ?>
-                        <form action="">
-                            <input type="text" list="topics" name="movie_search" id="movie_search" placeholder="Tìm kiếm....">
-                            <datalist id="topics">
-                                <?php for ($i = 0; $i < count($all_film); $i++) : ?>
-                                    <? $name_film = $all_film[$i]->moviename ?>
-                                    <option value="<?= $name_film ?>">
-                                    <?php endfor; ?>
-                            </datalist>
-                            <button class="search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
-                        </form>
-                    <?php endif; ?>
-                </div>
-                <?php if (Auth::isLoggedIn()) : ?>
-                    <div class="logout_user">
-                        <!-- đường dẫn thông tin ?-->
-                        <a href=""><i class='bx bx-user'></i><?= $u->getName() ?></a>
-                        <div class="container_logout_user">
-                            <a href="logout.php">Đăng xuất</a>
-                        </div>
-                    </div>
-                <?php else : ?>
-                    <a href="./login.php"><i class='bx bx-user'></i>Đăng nhập/Đăng ký</a>
-                <?php endif; ?>
-            </div>
         </div>
-    </div>
+        <div class="header-search">
+            <div class="box-search">
+            <form action="">
+                <input type="text" list="topics" name="search" id="search" placeholder="Tìm kiếm....">
+                <datalist id="topics">
+                                <?php for ($i = 0; $i < count($all_film); $i++) : ?>
+                                    <? $name_film = $all_film[$i]->moviename ?>
+                                    <option value="<?= $name_film ?>">
+                                    <?php endfor; ?>
+                            </datalist>
+                <button class="search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
+            </div>
+            </form>
+        </div>
+        <div class="header-login">
+            <?php if (Auth::isLoggedIn()) : ?>
+                <div class="logout_user" style="height: 100%;">
+                <!-- đường dẫn thông tin ?-->
+                            
+                    <a href="" ><i class='bx bx-user'></i><?= $u->getName() ?></a>
+                        <div class="box-login logout">
+                            <a id="logout" href="./logout.php">Đăng xuất</a>
+                        </div>
+                </div>
+
+                <?php else : ?>
+                    <div class="box-login">
+                        <a href="./login.php">Đăng nhập</a>/<a href="./register.php">Đăng ký</a>
+                    </div>
+                    <?php endif; ?>
+            
+        </div>
+
+     
+    </header>
+    
+   
 
 
+
+</body>

@@ -10,10 +10,13 @@ class Movie
     public $imagefile;
     public $movielength;
 
-    public function __construct($id_movie = '', $moviename = '', $nation = '', $description = '', $actors = '', $director = '', $imagefile = '', $movielength = '')
+    private static $instance;
+
+
+    public function __construct($moviename = '', $nation = '', $description = '', $actors = '', $director = '', $imagefile = '', $movielength = '')
     {
-        if ($id_movie != '' && $moviename != '' && $nation != '' && $description != '' && $actors != '' && $director != '' && $imagefile != '' && $movielength != '') {
-            $this->id_movie = $id_movie;
+        if ($moviename != '' && $nation != '' && $description != '' && $actors != '' && $director != '' && $imagefile != '' && $movielength != '') {
+            // $this->id_movie = $id_movie;
             $this->moviename = $moviename;
             $this->nation = $nation;
             $this->description = $description;
@@ -21,6 +24,65 @@ class Movie
             $this->director = $director;
             $this->imagefile = $imagefile;
             $this->movielength = $movielength;
+        }
+    }
+
+    // khoi tao 1 doi tuong
+    public static function getInstance(
+        $moviename,
+        $nation,
+        $description,
+        $actors,
+        $director,
+        $imagefile,
+        $movielength
+    ): Movie {
+        if (!self::$instance) {
+            self::$instance = new self(
+                $moviename,
+                $nation,
+                $description,
+                $actors,
+                $director,
+                $imagefile,
+                $movielength
+            );
+        }
+
+        return self::$instance;
+    }
+
+    // truong bat buoc nhap va khong duoc null
+    private function validate(): bool
+    {
+        return $this->moviename
+            && $this->nation
+            && $this->description && $this->actors && $this->director && $this->movielength;
+    }
+
+    public function addMovie($conn)
+    {
+        if ($this->validate()) {
+            // Write sql query 
+            // *** Đúng thự tự trong DB
+            $sql = "insert into movies (moviename, nation,description, actors, director, imagefile, movielength) 
+                    values (:moviename, :nation,:description, :actors, :director, :imagefile, :movielength);";
+
+            // Prepare connection
+            $stmt = $conn->prepare($sql);
+
+            // Refence to each value
+            $stmt->bindValue(':moviename', $this->moviename, PDO::PARAM_STR);
+            $stmt->bindValue(':description', $this->description, PDO::PARAM_STR);
+            $stmt->bindValue(':actors', $this->actors, PDO::PARAM_STR);
+            $stmt->bindValue(':director', $this->director, PDO::PARAM_STR);
+            $stmt->bindValue(':nation', $this->nation, PDO::PARAM_STR);
+            $stmt->bindValue(':imagefile', $this->imagefile, PDO::PARAM_STR);
+            $stmt->bindValue(':movielength', $this->movielength, PDO::PARAM_INT);
+
+            return $stmt->execute();
+        } else {
+            return false;
         }
     }
 
@@ -93,7 +155,7 @@ class Movie
     {
         if ($namefilm == "") {
             try {
-                $sql = "select * from movies;";
+                $sql = "select * from movies order by id_movie DESC;";
                 $stmt = $conn->prepare($sql);
                 $stmt->setFetchMode(PDO::FETCH_CLASS, 'Movie');
                 if ($stmt->execute()) {
@@ -121,7 +183,8 @@ class Movie
     }
 
     //Update
-    public function update($conn){
+    public function update($conn)
+    {
         try {
             $sql = "update movies
                        set moviename=:moviename, description=:description,
@@ -148,12 +211,12 @@ class Movie
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':id', $this->id_movie, PDO::PARAM_INT);
             if ($stmt->execute()) {
-              return true;
+                return true;
             }
-          } catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
-          }
+        }
     }
 
 

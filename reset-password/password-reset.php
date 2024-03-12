@@ -3,25 +3,6 @@ $message = "";
 $valid = 'true';
 // include("config.php");
 session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $email_reg = mysqli_real_escape_string($config, $_POST['email']);
-  $details = mysqli_query($config, "SELECT username,email FROM user WHERE email='$email_reg'");
-  if (mysqli_num_rows($details) > 0) { //if the given email is in database, ie. registered
-    $message_success = " Please check your email inbox or spam folder and follow the steps";
-    //generating the random key
-    $key = md5(time() + 123456789 % rand(4000, 55000000));
-    //insert this temporary key into database
-    $sql_insert = mysqli_query($dbconfig, "INSERT INTO forget_password(email,temp_key) VALUES('$email_reg','$key')");
-    //sending email about update
-    $to      = $email_reg;
-    $subject = 'Changing password DEMO- psuresh.com.np';
-    $msg = "Please copy the link and paste in your browser address bar" . "\r\n" . "www.psuresh.com.np/misc/forgot-password-php/forgot_password_reset.php?key=" . $key . "&email=" . $email_reg;
-    $headers = 'From:Gentle Heart Foundation' . "\r\n";
-    mail($to, $subject, $msg, $headers);
-  } else {
-    $message = "Sorry! no account associated with this email";
-  }
-}
 ?>
 <!DOCTYPE html>
 <html>

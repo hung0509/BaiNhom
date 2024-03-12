@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>crud dashboard</title>
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 
 
 </head>
@@ -126,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     </div>
                   </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover" id="datatable">
                   <thead>
                     <tr>
                       <th>STT</th>
@@ -206,6 +207,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         });
 
       });
+    </script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+
+    <script>
+        $("#datatable").dataTable({
+
+        })
     </script>
 </body>
 

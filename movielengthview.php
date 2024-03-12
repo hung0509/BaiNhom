@@ -80,7 +80,7 @@ $countPages = $countFilms / 10;
 
         <? require "./inc/header.php"; ?>
 
-        <div class="container_seriesfilm">
+        <div class="container_seriesfilm" >
             <div class="name_type"><?= $name ?></div>
             <?php if (!empty($list_movie)) : ?>
                 <?php for ($x = 0; $x < 1; $x++) : ?>

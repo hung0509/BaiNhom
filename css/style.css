@@ -19,12 +19,14 @@ main #slideshow{
     margin-top: 60px;
     width: 100%;
     display: flex;
-    height: 700px;
+    height: 600px;
 }
 
+
 main #slideshow .img{
-    object-fit: contain;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    /* object-fit: contain; */
 }
 
 /* css main container */
@@ -44,7 +46,7 @@ main #slideshow .img{
 
 #content-container .movie-container .type-movie-container{
     margin: 0;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     width: 100%;
     /* display: inline; */
 }
@@ -70,7 +72,7 @@ main #slideshow .img{
 
 
 .row{
-    padding: 20px 0;
+    padding-top: 20px;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -144,7 +146,7 @@ main #slideshow .img{
 
 #content-container aside{
     width: 25%;
-    padding-top: 20px;
+    padding-top: 80px;
 }
 
 #content-container .oustanding_films h2{
@@ -183,3 +185,14 @@ main #slideshow .img{
     font-size: 16px;
     opacity: 0.8;
 }
+
+.name_type{
+    padding: 80px 0 0 20px;
+    color:#f1b722;
+    font-size: 32px;
+}
+
+#space1, #space12{
+    height: 60px;
+}
+

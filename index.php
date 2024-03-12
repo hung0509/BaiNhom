@@ -59,7 +59,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
 
                     <div class="row">
                         <?php for ($i = 0; $i < 12; $i++) : ?>
-                            <?php if (isset($result_film_short[$i])) : ?>
+                            <?php if (isset($result_film_series[$i])) : ?>
                             <div class="col_4">
                                 <a href="./detail.php?id_movie=<? echo $result_film_series[$i]->id_movie ?>">
                                     <img src=<?= $result_film_series[$i]->imagefile ?> alt="Hình ảnh minh họa">
@@ -75,7 +75,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
                     <div id="space12"></div>
                     <div  id="phimLe" class="header-type-movie">
                         <h2>PHIM LẺ MỚI</h2>
-                        <a href="#">XEM THÊM</a>
+                        <a href="./movielengthview.php?movie-length=0&index-page=0">XEM THÊM</a>
                     </div>
 
                     <div class="row">

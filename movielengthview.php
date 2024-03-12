@@ -12,7 +12,7 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
         $name = "Phim lẻ";
     }
     $list_movie = Movie::getPagingByLength($conn, 12, $index_page * 12, $name);
-    $countFilms = count($list_movie);
+    $countFilms = Movie::countByLength($conn, $name);
 } else if (isset($_GET['index-page']) && $_GET['index-page'] >= 0 && isset($_GET["select-nation"])) {
     $index_page = $_GET['index-page'];
     $var = $_GET['select-nation'];
@@ -46,13 +46,13 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
             break;
     }
     $list_movie = Movie::getPagingByNation($conn, 12, $index_page * 12, $name);
-    $countFilms = count($list_movie);
+    $countFilms = Movie::countByNation($conn, $name);
 } else if (isset($_GET['index-page']) && $_GET['index-page'] >= 0 && isset($_GET["select-genre"])) {
     $var = $_GET['select-genre'];
     $index_page = $_GET['index-page'];
     $name = Genre::getNamebyID($conn, $var);
     $list_movie = Movie::getPagingByGenre($conn, 12, $index_page * 12, $var);
-    $countFilms = count($list_movie);
+    $countFilms = Movie::countByGenre($conn, $var);
 } else if (isset($_GET['index-page']) && $_GET['index-page'] >= 0 && isset($_GET["name_movie"])) {
     $name = $_GET['name_movie'];
     $index_page = $_GET['index-page'];
@@ -60,10 +60,8 @@ if (isset($_GET['index-page']) && isset($_GET["movie-length"])) {
     $countFilms = count($list_movie);
 }
 //Khi chọn trang
-$countPages = $countFilms / 12;
-if($countFilms%12 != 0){
-    $countPages+=1;
-}
+$countPages = ceil($countFilms / 12);
+
 ?>
 
 
@@ -87,7 +85,6 @@ if($countFilms%12 != 0){
         <div class="container_seriesfilm" >
             <div class="name_type"><?= $name ?></div>
             <?php if (!empty($list_movie)) : ?>
-                <?php for ($x = 0; $x < 1; $x++) : ?>
                     <div class="row">
                         <?php for ($i = 0; $i < 12; $i++) : ?>
                             <?php if (isset($list_movie[$i])) : ?>
@@ -103,7 +100,6 @@ if($countFilms%12 != 0){
                         <?php endfor; ?>
                         <div class="clear"></div>
                     </div>
-                <?php endfor; ?>
             <?php else : ?>
                 <div class="name_type"><?echo "Không có kết quả tìm kiếm nào như vậy!"?></div>
             <?php endif; ?>
@@ -124,9 +120,9 @@ if($countFilms%12 != 0){
                     <?php if (isset($_GET["name-film"])) : ?>
                         <a href="./movielengthview.php?index-page=<?= $i ?>&name-film=<?= $name ?>"><?= $i  + 1?></a>
                     <?php endif; ?>
-
                 <?php endfor; ?>
             </div>
+
         </div>
 </body>
 

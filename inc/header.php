@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <header id="header">
         <div class="header-logo">
             <div class="logo">
-                <h1>MyProject</h1>
+                <a href="./index.php"><h1>My Project</h1></a>
             </div>
         </div>
         <div class="header-menu">

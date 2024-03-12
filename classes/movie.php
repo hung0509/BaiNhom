@@ -233,6 +233,39 @@ class Movie
         }
     }
 
+    public static function countByNation($conn, $nameNation)
+    {
+        try {
+            $sql = "select count(id_movie) from movies where nation='$nameNation'";
+            return $conn->query($sql)->fetchColumn();
+        } catch (PDOException $e) {
+            $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function countByLength($conn, $length)
+    {
+        try {
+            $sql = "select count(id_movie) from movies where moviegenre='$length'";
+            return $conn->query($sql)->fetchColumn();
+        } catch (PDOException $e) {
+            $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function countByGenre($conn, $genre)
+    {
+        try {
+            $sql = "select count(id_movie) from moviegenres where id_genre='$genre'";
+            return $conn->query($sql)->fetchColumn();
+        } catch (PDOException $e) {
+            $e->getMessage();
+            return false;
+        }
+    }
+
     public static function getPagingByLength($conn, $limit, $offset, $movielength)
     {
         try {

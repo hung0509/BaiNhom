@@ -8,15 +8,210 @@ body{
 
 main{
     background-image: linear-gradient(to left, #161313 0%, #5b5a61 100%);
-<<<<<<< HEAD
-    /* height: 2800px; */
-=======
     width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
->>>>>>> 99722dcf9877bc892d049d5a72b0fee9aea7d2e4
+
 }
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #353432;
+}
+
+main{
+    background-image: linear-gradient(to left, #161313 0%, #5b5a61 100%);
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* css slider show */
+main #slideshow{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    height: 600px;
+}
+
+
+main #slideshow .img{
+    width: 100%;
+    height: 100%;
+    /* object-fit: contain; */
+}
+
+/* css main container */
+
+#content-container{
+    padding: 0px 20px 0px 20px; /*canh xoa sau khi add slide*/
+    width: 100%;
+    display: flex;
+}
+
+#content-container .movie-container{
+    width: 75%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+#content-container .movie-container .type-movie-container{
+    margin: 0;
+    padding: 20px 20px 0 20px;
+    width: 100%;
+    /* display: inline; */
+}
+
+/* css header ten the loai phim */
+#content-container .movie-container .type-movie-container .header-type-movie{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+#content-container .movie-container .type-movie-container .header-type-movie h2{
+    color: #f1b722;
+}
+
+#content-container .movie-container .type-movie-container .header-type-movie a{
+    color: #f1b722;
+    text-decoration: none;
+    display: flex;
+    align-items: end;
+}
+
+
+.row{
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+}
+
+ .col_4{
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* padding-top: 20px; */
+    width: 24.9999%;
+    padding: 8px 8px;
+    height: 290px;
+}
+
+ .col_4 img{
+    width: 100%;
+    height: 238px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.5s;
+    object-fit: cover;
+}
+
+ .col_4 a{
+    text-decoration: none;
+}
+
+ .name_film{
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 4px;
+    color: #fff;
+    opacity: 0.6;
+    transition: 0.5s;
+}
+
+
+/* .col_4:hover img{
+    transform: scale(1.2);
+}
+
+.col_4:hover .name_film{
+    transform: translateY(24px);
+    color: #434343;
+    font-size: 24px;
+} */
+
+.col_4 img::before {
+    transition: .5f;
+    transform: scale(.9);
+    z-index: -1;
+}
+
+.col_4 img:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ffee10;
+}
+
+.col_4 img:hover {
+    color: #ffee10;
+    box-shadow: 0 0 15px #ffee10;
+}
+
+
+/* css container phim le */
+
+
+
+
+
+#content-container aside{
+    width: 25%;
+    padding-top: 80px;
+}
+
+#content-container .oustanding_films h2{
+    color:#c9c1ffe0;
+    /* font-size: 24px; */
+    text-align: center;
+}
+
+#content-container .oustanding_films{
+    width: 100%;
+    float: right;
+    /* margin-right: 45px;
+    margin-top: 55px;  */
+;
+}
+
+#content-container .outstanding-film{
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+    background-color: rgb(198 198 244 / 7%);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#content-container .outstanding-film img{
+    width: 29.999999%;
+    border-radius: 4px;
+}
+
+#content-container .outstanding-film .name-film{
+    width: 69.99999%;
+    display: inline-block;
+    margin-left: 20px;
+    color: #d4d4bffa;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.name_type{
+    padding: 80px 0 0 20px;
+    color:#f1b722;
+    font-size: 32px;
+}
+
+#space1, #space12{
+    height: 60px;
+}
+
 
 /* css slider show */
 main #slideshow{

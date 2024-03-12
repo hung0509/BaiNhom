@@ -8,10 +8,14 @@ body{
 
 main{
     background-image: linear-gradient(to left, #161313 0%, #5b5a61 100%);
+<<<<<<< HEAD
+    /* height: 2800px; */
+=======
     width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+>>>>>>> 99722dcf9877bc892d049d5a72b0fee9aea7d2e4
 }
 
 /* css slider show */

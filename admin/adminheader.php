@@ -39,7 +39,7 @@
             </li>
 
             <li class="">
-                <a href="#"><i class="material-icons">date_range</i><span>Thêm phim</span></a>
+                <a href="./addfilm.php"><i class="material-icons">date_range</i><span>Thêm phim</span></a>
             </li>
 
             <li class="">

@@ -62,6 +62,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
                             <?php if (isset($result_film_series[$i])) : ?>
                             <div class="col_4">
                                 <a href="./detail.php?id_movie=<? echo $result_film_series[$i]->id_movie ?>">
+                                    <?=$result_film_series[$i]->checkImage()?>
                                     <img src=<?= $result_film_series[$i]->imagefile ?> alt="Hình ảnh minh họa">
                                     <div class="name_film"><?= $result_film_series[$i]->moviename ?></div>
                                 </a>
@@ -83,6 +84,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
                             <?php if (isset($result_film_short[$i])) : ?>
                                 <div class="col_4">
                                     <a href="./detail.php?id_movie=<? echo $result_film_short[$i]->id_movie ?>">
+                                        <?=$result_film_short[$i]->checkImage()?>
                                         <img src=<?= $result_film_short[$i]->imagefile ?> alt="Hình ảnh minh họa">
                                         <div class="name_film"><?= $result_film_short[$i]->moviename ?></div>
                                     </a>

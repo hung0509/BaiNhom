@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <td><? echo $m->actors ?></td>
                         <td><? echo $m->nation ?></td>
                         <td>
-                          <?php $m->checkImage()?>       
+                          <?php $m->checkImageAdmin()?>       
                           <img src=<?= "." . $m->imagefile ?> alt="Hình ảnh" alt="" width="100" height="100">
                         </td>
                         <td>

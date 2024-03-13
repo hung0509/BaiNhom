@@ -73,7 +73,6 @@ $countPages = ceil($countFilms / 12);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./css/styleheader.css">
     <title>Document</title>
 </head>
 
@@ -90,6 +89,7 @@ $countPages = ceil($countFilms / 12);
                             <?php if (isset($list_movie[$i])) : ?>
                                 <div class="col_4 setupFilm">
                                     <a href="./detail.php?id_movie=<? echo $list_movie[$i]->id_movie ?>">
+                                        <?=$list_movie[$i]->checkImage()?>
                                         <img class="setupImage" src=<?= $list_movie[$i]->imagefile ?> alt="Hình ảnh minh họa">
                                         <div class="name_film"><?= $list_movie[$i]->moviename ?></div>
                                     </a>

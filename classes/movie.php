@@ -101,8 +101,14 @@ class Movie
         }
     }
 
+    public function checkImageAdmin(){
+        if(!file_exists("." . $this->imagefile)){
+            $this->imagefile = "./uploads/image.png";
+        }
+    }
+
     public function checkImage(){
-        if(!file_exists(".". $this->imagefile)){
+        if(!file_exists($this->imagefile)){
             $this->imagefile = "./uploads/image.png";
         }
     }
@@ -247,7 +253,7 @@ class Movie
     public static function countByLength($conn, $length)
     {
         try {
-            $sql = "select count(id_movie) from movies where moviegenre='$length'";
+            $sql = "select count(id_movie) from movies where movielength='$length'";
             return $conn->query($sql)->fetchColumn();
         } catch (PDOException $e) {
             $e->getMessage();

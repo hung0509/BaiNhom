@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <td><input name="director" class="edit_film" type="text" value="<?= $result_film->director ?>"></td>
                                         <td><input name="actors" class="edit_film" type="text" value="<?= $result_film->actors ?>"></td>
                                         <td><input name="nation" class="edit_film" type="text" value="<?= $result_film->nation ?>"></td>
-                                        <td><textarea type="text" name="description" class="edit_film"><?= $result_film->description?></textarea></td>
+                                        <td><textarea style="height: 208px; width: 142px;"  type="text" name="description" class="edit_film"><?= $result_film->description?></textarea></td>
                                         <td>
                                             <div class="row">
 

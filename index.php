@@ -14,7 +14,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/stylefooter.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
@@ -144,11 +144,11 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
             </div>
             </aside>
         </div>
-            
+        <hr  style="line-style:solid; none;margin-top:30px;width="100%"; align="center"; color="#59554b"" />
     </main>
-    <footer id='footer'> 
+<!--    <footer id='footer'> -->
         <? require "./inc/footer.php"?> 
-    </footer>
+<!--    </footer>-->
 
 
     

@@ -20,6 +20,7 @@ a {
 
 .main-content {
   width: 1170px;
+  /*width: 80%;*/
   max-width: calc(100% - 48px);
   margin-left: auto;
   margin-right: auto;
@@ -47,8 +48,14 @@ ul {
 
 /* Footer */
 .footer {
-  padding: 96px 135px 0;
-  background: #2e2100;
+  width: 80%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 80px 0;
+  /*background: #2e2100;*/
+  background-image: linear-gradient(to left, #161313 0%, #5b5a61 100%);
+
 }
 
 .footer .row {
@@ -58,7 +65,7 @@ ul {
 }
 
 .footer .row .column {
-  width: 21.6%;
+  width: 20%;
 }
 
 .footer .row .column:first-child {

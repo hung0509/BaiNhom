@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>crud dashboard</title>
+  <title>Dashboard</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
 
@@ -160,9 +160,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                               <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
                                 <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                               </a>
-                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
+                              <!-- <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
                                 Up
-                              </a>
+                              </a> -->
 
                           </div>
                         </td>

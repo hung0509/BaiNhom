@@ -1,6 +1,6 @@
 :root {
   --primary-color: #ffb900;
-  --font-heading: Sen, sans-serif;
+  /* --font-heading: Sen, sans-serif; */
 }
 
 html {
@@ -9,7 +9,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "Poppins", sans-serif;
+  /* font-family: "Poppins", sans-serif; */
 }
 
 /* Common */

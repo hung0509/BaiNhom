@@ -16,10 +16,10 @@ if (isset($_GET['id'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_film = $_GET['id'];
     $oldimage = $result_film->imagefile;
-    $name = $result_film->name_movie;
+    // $name = $result_film->name_movie;
     if ($result_film->deleteById($conn)) {
         if($oldimage){
-            unlink("." . $oldimage);
+            unlink("./uploads/" . $oldimage);
         }
         header("Location: ./adminhome.php?movie_search=");
         Dialog::show("Xoá thành công!");

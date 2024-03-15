@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // xu ly khi submit form add movie
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // $book = Movie::getInstance($title, $description, $author, $fullname);
 
     // lấy gia tri tu form THÔNG QUA "name" => NAME phải trùng với biến $_POST['name của trường ở form']
     $moviename = $_POST['moviename'];
@@ -30,28 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $actors = $_POST['actors'];
     $movielength = $_POST['movielength'];
-    $imagefile = $_POST['imagefile'];
     $nation = $_POST['nation'];
-
-    // validate
-
-    // echo $moviename . PHP_EOL;
-    // echo $director. PHP_EOL;
-    // echo $description. PHP_EOL;
-    // echo $actors. PHP_EOL;
-    // echo $movielength. PHP_EOL;
-    // echo $nation. PHP_EOL;
-
+    
+    //kiểm tra thông tin phim
     // Loai bo khoang trang o dau va cuoi
-     $moviename = trim($moviename);
-     $director = trim($director);
-     $description = trim($description);
-     $actors = trim($actors);
-     $movielength = trim($movielength);
-     $nation = trim($nation);
+    $moviename = trim($moviename);
+    $director = trim($director);
+    $description = trim($description);
+    $actors = trim($actors);
+    $movielength = trim($movielength);
+    $nation = trim($nation);
 
-     // validate
-
+    $errors = [];
     if(strlen($moviename) > 100){
         $errors[] = "movie name is too long";
     }
@@ -76,9 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "director is too long";
     }
 
-    if(strlen($imagefile) > 100){
-        $errors[] = "imagefile is too long";
-    }
+    // if(strlen($imagefile) > 100){
+    //     $errors[] = "imagefile is too long";
+    // }
 
     if(strlen($moviename) == 0){
         $errors[] = "movie name is empty";
@@ -88,26 +77,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "director is empty";
     }
 
-    // var_dump($errors);
-
-    $errors = [];
-
     if($moviename === ''){
-       $errors[] = "movie name is empty";
+        $errors[] = "movie name is empty";
     }
 
     if($director === ''){
         $errors[] = "director is empty";
     }
 
-    // var_dump($errors);
+    if(!$error){
+        try {
+            $fullname = Uploadfile::process();
+            
+            if (!empty($fullname)) {
+                $imagefile = "./uploads/".$fullname;
+                // khoi tao 1 doi tuong movie - Đúng thứ tự
+                $movie = Movie::getInstance($moviename, $nation, $description, $actors, 
+                                            $director, $imagefile, $movielength);
+                if ($movie->addMovie($conn)) {
+                    header("Location: ./adminhome.php?movie_search=");
+                } else {
+                    unlink("./uploads/$fullname");
+                    Dialog::show(implode(",", $errors));
+                }
+            } else{
+                //ng dung ko upload file anh
+                $noImageFile = "./uploads/image.png";
+                $movie = Movie::getInstance($moviename, $nation, $description, $actors, 
+                                            $director, $noImageFile, $movielength);
+                if ($movie->addMovie($conn)) {
+                    header("Location: ./adminhome.php?movie_search=");
+                } else {
+                    unlink("./uploads/$noImageFile");
+                    Dialog::show(implode(",", $errors));
+                }
+            }
+        } catch (PDOException $e) {
+            Dialog::show($e->getMessage());
+        }
+    }
 
-    // if(!empty($errors)){
-    //     foreach($errors as $error){
-    //         echo "<p>".$error."</p>";
-    //     }
-    //     // exit();
-    // }
+    
+
+    // validate
+
+    // echo $moviename . PHP_EOL;
+    // echo $director. PHP_EOL;
+    // echo $description. PHP_EOL;
+    // echo $actors. PHP_EOL;
+    // echo $movielength. PHP_EOL;
+    // echo $nation. PHP_EOL;
+
 
     // echo $moviename . PHP_EOL;     
     // echo $director. PHP_EOL;
@@ -116,23 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // echo $movielength. PHP_EOL;
     // echo $nation. PHP_EOL;
 
-
-    // khoi tao 1 doi tuong movie - Đúng thứ tự
-    $movie = Movie::getInstance($moviename, $nation, $description, $actors, $director, $imagefile, $movielength);
-
-    // var_dump($movie);
-    $result = $movie->addMovie($conn); // true or false
-
-    // goij caapj nhaapj
-    if ($result) {
-        header("Location: ./adminhome.php?movie_search=");
-    } else {
-        // var_dump($errors);
-       Dialog::show(implode(",", $errors));     
-        //  alert(JSON.stringify($result));
-
     }
-}
 
 ?>
 
@@ -205,8 +209,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <input type="file" name="imagefile" placeholder="imagefile">
                                         <input type="text" name="director" placeholder="director">
                                         <input type="text" name="nation" placeholder="nation">
-                                        <input type="text" name="movielength" placeholder="movielength">
-
+                                        <select name="movielength">
+                                            <option value="Phim bộ">Phim bộ</option>
+                                            <option value="Phim lẻ">Phim lẻ</option>
+                                        </select>
                                         <input type="submit" value="Add">
                                     </form>
                                 </div>

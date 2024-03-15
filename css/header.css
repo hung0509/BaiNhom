@@ -116,11 +116,14 @@
     float: left;
 }
 
-
 #header .type_menubar:hover .menubar{
     display: block;
     align-items: center;
 }
+#header .menubar li a:hover{
+    color: white;
+}
+
 
 #header .menunation{
     display: none;

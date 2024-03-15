@@ -78,7 +78,7 @@ class Movie
             $stmt->bindValue(':director', $this->director, PDO::PARAM_STR);
             $stmt->bindValue(':nation', $this->nation, PDO::PARAM_STR);
             $stmt->bindValue(':imagefile', $this->imagefile, PDO::PARAM_STR);
-            $stmt->bindValue(':movielength', $this->movielength, PDO::PARAM_INT);
+            $stmt->bindValue(':movielength', $this->movielength, PDO::PARAM_STR);
 
             return $stmt->execute();
         } else {
@@ -194,7 +194,8 @@ class Movie
         try {
             $sql = "update movies
                        set moviename=:moviename, description=:description,
-                       actors=:actors, nation=:nation, director=:director
+                       actors=:actors, nation=:nation, director=:director,
+                       imagefile=:imagefile
                        where id_movie=:id_movie;";
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':moviename', $this->moviename, PDO::PARAM_STR);
@@ -202,6 +203,8 @@ class Movie
             $stmt->bindValue(':actors', $this->actors, PDO::PARAM_STR);
             $stmt->bindValue(':director', $this->director, PDO::PARAM_STR);
             $stmt->bindValue(':nation', $this->nation, PDO::PARAM_STR);
+            $stmt->bindValue(':imagefile', $this->imagefile, 
+                            $this->imagefile == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
             $stmt->bindValue(':id_movie', $this->id_movie, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (PDOException $e) {

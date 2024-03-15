@@ -22,16 +22,41 @@ if (isset($_GET['id'])) {
 //Khi bấm vào nút lưu
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // lấy thông tin chỉnh sửa
+    $result_film->id_movie = $_GET['id'];
     $result_film->moviename = $_POST['moviename'];
     $result_film->director = $_POST['director'];
     $result_film->description = $_POST['description'];
     $result_film->actors = $_POST['actors'];
     $result_film->nation = $_POST['nation'];
+    try {
+        $fullname = Uploadfile::process();
+        if(!empty($fullname)){
+            // lay ten file cu ra
+            $oldimage = $result_film->imagefile;
+            // gan ten file moi
+            $result_film->imagefile = "./uploads/".$fullname;
+            if($result_film->update($conn)){
+                if($oldimage){
+                    unlink($oldimage);
+                }
+                header("Location: adminhome.php");
+            }
+        } else{
+            if($result_film->update($conn)){
+                header("Location: adminhome.php");
+            }
+        }
+        
+    } catch ( PDOException $e) {
+        Dialog::show($e->getMessage());
+    }
+
+   
 
     // goij caapj nhaapj
-    if ($result_film->update($conn)) {
-        header("Location: ./adminhome.php?movie_search=");
-    }
+    // if ($result_film->update($conn)) {
+    //     header("Location: ./adminhome.php?movie_search=");
+    // }
 
     // $result = $result_film->update($conn);
     // if($result){
@@ -143,23 +168,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>STT</th>
+                                        <th>ID</th>
                                         <th>Tên phim</th>
                                         <th>Đạo diễn</th>
                                         <th>Diễn viên</th>
                                         <th>Quốc gia</th>
                                         <th>Mô tả</th>
+                                        <th>Ảnh</th>
                                         <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <form action="" method="post">
-                                        <td>1</td>
+                                    <form action="" enctype="multipart/form-data" method="post">
+                                        <td><?= $result_film->id_movie ?></td>
                                         <td><input name="moviename" class="edit_film" type="text" value="<?= $result_film->moviename ?>"></td>
                                         <td><input name="director" class="edit_film" type="text" value="<?= $result_film->director ?>"></td>
                                         <td><input name="actors" class="edit_film" type="text" value="<?= $result_film->actors ?>"></td>
                                         <td><input name="nation" class="edit_film" type="text" value="<?= $result_film->nation ?>"></td>
                                         <td><textarea style="height: 208px; width: 142px;"  type="text" name="description" class="edit_film"><?= $result_film->description?></textarea></td>
+                                        <td><img src= <?= "." . $result_film->imagefile ?> alt="Hình ảnh" style="height: 150px; width: 100px;">
+                                            <input name="imagefile" class="bt-chosefile" type="file" style="border-radius: 4px;"></input>
+                                        </td>
                                         <td>
                                             <div class="row">
 
@@ -170,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <input type="hidden" name="bienjs2" id="bienjs2" value="helo" />
                                         </form>
                                     <button onclick="cancel()" type="button" name="btn_cancel" id="btn_cancel" class="btn">
-                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#11199;</i>
                                     </button>
 
                         </div>

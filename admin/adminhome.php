@@ -33,7 +33,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <title>Dashboard</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+<style>
+    #sidebar ul li.active1>a {
+        color: #4c7cf3;
+        background-color: #DBE5FD;
+    }
 
+    #sidebar ul li.active1>a i {
+        color: #4c7cf3;
+    }
+</style>
 
 </head>
 

@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         } else{
             if($result_film->update($conn)){
-                header("Location: adminhome.php");
+                header("Location: adminhome.php?movie_search=");
             }
         }
         

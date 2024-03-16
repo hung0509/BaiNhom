@@ -39,7 +39,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 
             <ul class="header_menu">
                 <li><a href="./admin.php">Danh sách phim</a></li>
-                <li><a href="">Thêm phim</a></li>
+                <li><a href="./addfilm.php">Thêm phim</a></li>
                 <li><?php if (Auth::isLoggedIn()) : ?>
                         <div class="logout_user">
                             <!-- đường dẫn thông tin ?-->

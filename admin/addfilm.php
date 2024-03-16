@@ -3,9 +3,7 @@ require "../inc/init.php";
 //Bắt buộc phải là tài khoản admin thì mới vào được page admin panel giùm tui nha :)))
 Auth::requireLogin();
 $conn = require('../inc/db.php');
-// $name_film = "";
-// $name_film = $_GET['movie_search'];
-// $movies = Movie::searchByName($conn, $name_film);
+$name_film = "";
 
 if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
     $u = $_SESSION['user'];
@@ -30,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $actors = $_POST['actors'];
     $movielength = $_POST['movielength'];
     $nation = $_POST['nation'];
-    
+
     //kiểm tra thông tin phim
     // Loai bo khoang trang o dau va cuoi
     $moviename = trim($moviename);
@@ -41,70 +39,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nation = trim($nation);
 
     $errors = [];
-    if(strlen($moviename) > 100){
+    if (strlen($moviename) > 100) {
         $errors[] = "movie name is too long";
     }
 
-    if(strlen($description) > 500){
+    if (strlen($description) > 500) {
         $errors[] = "description is too long";
     }
 
-    if(strlen($actors) > 500){
+    if (strlen($actors) > 500) {
         $errors[] = "actors are too long";
     }
 
-    if(strlen($movielength) > 10){
-        $errors[] = "movie length is too long";
-    }
-
-    if(strlen($nation) > 100){
+    if (strlen($nation) > 100) {
         $errors[] = "nation is too long";
     }
 
-    if(strlen($director) > 100){
+    if (strlen($director) > 100) {
         $errors[] = "director is too long";
     }
 
-    // if(strlen($imagefile) > 100){
-    //     $errors[] = "imagefile is too long";
-    // }
-
-    if(strlen($moviename) == 0){
+    if (strlen($moviename) == 0) {
         $errors[] = "movie name is empty";
     }
 
-    if(strlen($director) == 0){
+    if (strlen($director) == 0) {
         $errors[] = "director is empty";
     }
 
-    if($moviename === ''){
+    if ($moviename === '') {
         $errors[] = "movie name is empty";
     }
-
-    if($director === ''){
+    if ($director === '') {
         $errors[] = "director is empty";
     }
+    if ($actors === '') {
+        $errors[] = "actors are empty";
+    }
+    if ($movielength === '') {
+        $errors[] = "movie length is empty";
+    }
+    if ($nation === '') {
+        $errors[] = "nation is empty";
+    }
+    if ($description === '') {
+        $errors[] = "description is empty";
+    }
 
-    if(!$error){
+    if (!$errors) {
         try {
             $fullname = Uploadfile::process();
-            
+
             if (!empty($fullname)) {
-                $imagefile = "./uploads/".$fullname;
+                $imagefile = "./uploads/" . $fullname;
                 // khoi tao 1 doi tuong movie - Đúng thứ tự
-                $movie = Movie::getInstance($moviename, $nation, $description, $actors, 
-                                            $director, $imagefile, $movielength);
+                $movie = Movie::getInstance($moviename, $nation, $description, $actors,
+                    $director, $imagefile, $movielength);
                 if ($movie->addMovie($conn)) {
                     header("Location: ./adminhome.php?movie_search=");
                 } else {
                     unlink("./uploads/$fullname");
                     Dialog::show(implode(",", $errors));
                 }
-            } else{
+            } else {
                 //ng dung ko upload file anh
                 $noImageFile = "./uploads/image.png";
-                $movie = Movie::getInstance($moviename, $nation, $description, $actors, 
-                                            $director, $noImageFile, $movielength);
+                $movie = Movie::getInstance($moviename, $nation, $description, $actors,
+                    $director, $noImageFile, $movielength);
                 if ($movie->addMovie($conn)) {
                     header("Location: ./adminhome.php?movie_search=");
                 } else {
@@ -116,27 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             Dialog::show($e->getMessage());
         }
     }
-
-    
-
-    // validate
-
-    // echo $moviename . PHP_EOL;
-    // echo $director. PHP_EOL;
-    // echo $description. PHP_EOL;
-    // echo $actors. PHP_EOL;
-    // echo $movielength. PHP_EOL;
-    // echo $nation. PHP_EOL;
-
-
-    // echo $moviename . PHP_EOL;     
-    // echo $director. PHP_EOL;
-    // echo $description. PHP_EOL;
-    // echo $actors. PHP_EOL;
-    // echo $movielength. PHP_EOL;
-    // echo $nation. PHP_EOL;
-
-    }
+}
 
 ?>
 
@@ -151,109 +132,131 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>crud dashboard</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styleaddfilm.css">
+    <style>
+        #sidebar ul li.active2 > a {
+            color: #4c7cf3;
+            background-color: #DBE5FD;
+        }
 
-
+        #sidebar ul li.active2 > a i {
+            color: #4c7cf3;
+        }
+    </style>
 </head>
 
 <body>
 
 
-    <div class="wrapper">
-        <div class="body-overlay"></div>
-        <!-------------------------sidebar------------>
-        <!-- Sidebar  -->
-        <? require "./adminheader.php"; ?>
+<div class="wrapper">
+    <div class="body-overlay"></div>
+    <!-------------------------sidebar------------>
+    <!-- Sidebar  -->
+    <? require "./adminheader.php"; ?>
 
-        <!--------page-content---------------->
+    <!--------page-content---------------->
 
-        <div id="content">
+    <div id="content">
 
-            <!--top--navbar----design--------->
+        <!--top--navbar----design--------->
 
-            <div class="top-navbar">
-                <div class="xp-topbar">
+        <div class="top-navbar">
+            <div class="xp-breadcrumbbar text-center">
+                <h4 class="page-title">Thêm phim</h4>
+            </div>
+            <!--------main-content------------->
 
-                    <!-- Start XP Row -->
-                    <div class="row">
-                        <!-- Start XP Col -->
-
-                        <!-- End XP Col -->
-                    </div>
-                    <!-- End XP Row -->
-                </div>
-                <div class="xp-breadcrumbbar text-center">
-                    <h4 class="page-title">Them phim</h4>
-                </div>
-                <!--------main-content------------->
-
-                <div class="main-content">
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="table-wrapper">
-                                <div class="table-title">
-                                    <div class="row">
-                                        <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-                                            <h2 class="ml-lg-2">Add Movie</h2>
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-wrapper">
+                            <div class="col-md-12">
+                                <!--
+                    - Tạo 1 form với phương thức POST, nếu mà upload hình ành => enctype="multipart/form-data"
+                -->
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <fieldset>
+                                        <div class="row">
+                                            <label for="moviename">Tên phim:</label>
+                                            <span class="error">*</span>
+                                            <input name="moviename" type="text" placeholder="Nhập tên phim">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <!--
-                        - Tạo 1 form với phương thức POST, nếu mà upload hình ành => enctype="multipart/form-data"
-                    -->
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                        <input type="text" name="moviename" placeholder="moviename">
-                                        <input type="text" name="description" placeholder="description">
-                                        <input type="text" name="actors" placeholder="actors">
-                                        <input type="file" name="imagefile" placeholder="imagefile">
-                                        <input type="text" name="director" placeholder="director">
-                                        <input type="text" name="nation" placeholder="nation">
-                                        <select name="movielength">
-                                            <option value="Phim bộ">Phim bộ</option>
-                                            <option value="Phim lẻ">Phim lẻ</option>
-                                        </select>
-                                        <input type="submit" value="Add">
-                                    </form>
-                                </div>
-
+                                        <div class="row">
+                                            <label for="description">Mô tả:</label>
+                                            <span class="error">*</span>
+                                            <input name="description" type="text" placeholder="Nhập mô tả">
+                                        </div>
+                                        <div class="row">
+                                            <label for="actors">Diễn viên:</label>
+                                            <span class="error">*</span>
+                                            <input name="actors" type="text" placeholder="Nhập tên các diễn viên">
+                                        </div>
+                                        <div class="row">
+                                            <label for="imagefile">Poster:</label>
+                                            <input name="imagefile" type="file">
+                                        </div>
+                                        <div class="row">
+                                            <label for="director">Đạo diễn:</label>
+                                            <span class="error">*</span>
+                                            <input name="director" type="text" placeholder="Nhập tên đạo diễn">
+                                        </div>
+                                        <div class="row">
+                                            <label for="nation">Quốc gia:</label>
+                                            <span class="error">*</span>
+                                            <input name="nation" type="text" placeholder="Nhập quốc gia">
+                                        </div>
+                                        <div class="row">
+                                            <label for="movielength">Thời lượng phim:</label>
+                                            <span class="error">*</span>
+                                            <input name="movielength" type="text" placeholder="Nhập thời lượng phim">
+                                        </div>
+                                        <div class="btn">
+                                            <input type="submit" value="Thêm phim">
+                                            <a href="./adminhome.php">
+                                                <input type="reset" value="Hủy">
+                                            </a>
+                                        </div>
+                                    </fieldset>
+                                </form>
                             </div>
+
                         </div>
                     </div>
-
-                    <!---footer---->
-
-
                 </div>
+
+                <!---footer---->
+
+
             </div>
         </div>
+    </div>
 
 
-        <!----------html code compleate----------->
+    <!----------html code compleate----------->
 
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="../js/jquery-3.3.1.slim.min.js"></script>
-        <script src="../js/popper.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/jquery-3.3.1.min.js"></script>
 
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".xp-menubar").on('click', function() {
-                    $('#sidebar').toggleClass('active');
-                    $('#content').toggleClass('active');
-                });
-
-                $(".xp-menubar,.body-overlay").on('click', function() {
-                    $('#sidebar,.body-overlay').toggleClass('show-nav');
-                });
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".xp-menubar").on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
             });
-        </script>
+
+            $(".xp-menubar,.body-overlay").on('click', function () {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+
+        });
+    </script>
 
 
 </body>

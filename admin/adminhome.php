@@ -3,7 +3,7 @@ require "../inc/init.php";
 //Bắt buộc phải là tài khoản admin thì mới vào được page admin panel giùm tui nha :)))
 Auth::requireLogin();
 $conn = require('../inc/db.php');
-$name_film = "";
+//$name_film = "";
 $name_film = $_GET['movie_search'];
 $movies = Movie::searchByName($conn, $name_film);
 
@@ -15,7 +15,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (isset($_GET['button-search'])) {
-    header("Location: ./adminhome.php?movie_search=" . $name_film);
+    header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
   }
 }
 

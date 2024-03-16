@@ -9,7 +9,7 @@
         public static function requireLogin() {
             if (!static::isLoggedIn()) {
                 echo "<script>alert('" . "Please! Login to continue" . "');</script>";
-                echo "<script>window.location.href='./login.php';</script>";
+                echo "<script>window.location.href='../login.php';</script>";
                 die();
             }
         }

@@ -162,6 +162,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!--top--navbar----design--------->
 
         <div class="top-navbar">
+            <div class="xp-topbar">
+
+                <!-- Start XP Row -->
+                <div class="row">
+                    <!-- Start XP Col -->
+                    <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                        <div class="xp-menubar">
+                                <span class="material-icons text-white">signal_cellular_alt
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="fixsignin col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                        <div class="xp-profilebar text-right">
+                            <nav class="navbar p-0">
+                                <ul class="nav navbar-nav flex-row ml-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#" data-toggle="dropdown">
+                                            <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
+                                            <span class="xp-user-live"></span>
+                                        </a>
+                                        <ul class="dropdown-menu small-menu">
+
+                                            <li>
+                                                <a href="../logout.php"><span class="material-icons">
+                                                            logout</span>Logout</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+                    <!-- End XP Col -->
+                </div>
+                <!-- End XP Row -->
+            </div>
             <div class="xp-breadcrumbbar text-center">
                 <h4 class="page-title">Thêm phim</h4>
             </div>

@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                         <li class="nav-item dropdown">
                                             <a class="nav-link" href="#" data-toggle="dropdown">
-                                                <img src="img/user.jpg" style="width:40px; border-radius:50%;" />
+                                                <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                                                 <span class="xp-user-live"></span>
                                             </a>
                                             <ul class="dropdown-menu small-menu">

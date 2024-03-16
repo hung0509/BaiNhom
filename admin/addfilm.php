@@ -88,31 +88,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!$errors) {
         try {
-            $fullname = Uploadfile::process();
+//            $imageName = Uploadfile::process();
 
-            if (!empty($fullname)) {
-                $imagefile = "./uploads/" . $fullname;
-                // khoi tao 1 doi tuong movie - Đúng thứ tự
-                $movie = Movie::getInstance($moviename, $nation, $description, $actors,
-                    $director, $imagefile, $movielength);
-                if ($movie->addMovie($conn)) {
-                    header("Location: ./adminhome.php?movie_search=");
-                } else {
-                    unlink("./uploads/$fullname");
-                    Dialog::show(implode(",", $errors));
-                }
+//            if($imageName == null){
+//                $imageName = "image.png";
+//            }
+
+            $imageName = Uploadfile::process() ?? "image.png";  // ?? is null coalescing operator
+
+            $imagefile = "./uploads/" . $imageName;
+            // khoi tao 1 doi tuong movie - Đúng thứ tự
+
+            $movie = Movie::getInstance($moviename, $nation, $description, $actors,
+                $director, $imagefile, $movielength);
+            if ($movie->addMovie($conn)) {
+                header("Location: ./adminhome.php?movie_search=");
             } else {
-                //ng dung ko upload file anh
-                $noImageFile = "./uploads/image.png";
-                $movie = Movie::getInstance($moviename, $nation, $description, $actors,
-                    $director, $noImageFile, $movielength);
-                if ($movie->addMovie($conn)) {
-                    header("Location: ./adminhome.php?movie_search=");
-                } else {
-                    unlink("./uploads/$noImageFile");
-                    Dialog::show(implode(",", $errors));
-                }
+                unlink("./uploads/$imageName");
+                Dialog::show(implode(",", $errors));
             }
+
         } catch (PDOException $e) {
             Dialog::show($e->getMessage());
         }
@@ -210,6 +205,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="col-md-12">
                         <div class="table-wrapper">
                             <div class="col-md-12">
+                                <style>
+                                    .ul-errors{
+                                        list-style: disc;
+                                        background-color: rgba(250, 220, 220, 0.3);
+                                        color: white;
+                                        margin-top: 5px;
+                                        padding: 10px;
+                                        border-radius: 5px;
+                                        border:1px solid rgba(241, 74, 74, 0.4);
+                                        box-shadow: 1px 2px 2px rgba(204, 204, 204, 0.7);
+                                    }
+                                    .error-item{
+                                        color: red;
+                                        font-size: 12px;
+                                        margin: 0 10px;
+                                        /*margin-left: 92px;*/
+                                    }
+                                </style>
+                                <?php
+                                if(!empty($errors)){
+                                    echo '<div class="errors-message">';
+                                    echo '<ul class="ul-errors">';
+                                    foreach($errors as $error){
+                                        echo '<li class="error-item">'.$error.'</li>';
+                                    }
+                                    echo '</ul>';
+                                    echo '</div>';
+                                }
+                                ?>
                                 <!--
                     - Tạo 1 form với phương thức POST, nếu mà upload hình ành => enctype="multipart/form-data"
                 -->
@@ -246,8 +270,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                         <div class="row">
                                             <label for="movielength">Thời lượng phim:</label>
-                                            <span class="error">*</span>
-                                            <input name="movielength" type="text" placeholder="Nhập thời lượng phim">
+                                            <select name="movielength">
+                                                <option value="Phim bộ">Phim bộ</option>
+                                                <option value="Phim lẻ">Phim lẻ</option>
+                                            </select>
                                         </div>
                                         <div class="btn">
                                             <input type="submit" value="Thêm phim">

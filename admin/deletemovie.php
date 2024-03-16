@@ -18,8 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $oldimage = $result_film->imagefile;
     // $name = $result_film->name_movie;
     if ($result_film->deleteById($conn)) {
-        if($oldimage){
-            unlink("./uploads/" . $oldimage);
+        if($oldimage && $oldimage != "./uploads/image.png"){
+//            unlink("./uploads/" . $oldimage);
+            unlink($oldimage);
         }
         header("Location: ./adminhome.php?movie_search=");
         Dialog::show("Xoá thành công!");

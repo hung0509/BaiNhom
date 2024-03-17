@@ -30,7 +30,7 @@
 <body>
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3><img src="../uploads/img/phimmoi.png" class="img-fluid" /><span>Web phim</span></h3>
+            <a href="../index.php"><h3><img src="../uploads/logo2.png" class="img-fluid"/></a><span>Web phim</span></h3>
         </div>
         <ul class="list-unstyled components">
             <li class="active1">

@@ -51,18 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         color: #4c7cf3;
         background-color: #DBE5FD;
     }
-
-    #sidebar ul li.active1>a {
-      color: #4c7cf3;
-      background-color: #DBE5FD;
-    }
-
     #sidebar ul li.active1>a i {
         color: #4c7cf3;
-    }
 
-    #sidebar ul li.active1>a i {
-      color: #4c7cf3;
     }
   </style>
 

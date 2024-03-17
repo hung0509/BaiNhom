@@ -18,7 +18,7 @@ $result_film_short = Movie::getPagingByLength($conn, 12, 0, "Phim lẻ");
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
-    <title>MyProject</title>
+    <title>My Project</title>
 </head>
 
 <body>

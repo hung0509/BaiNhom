@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Auth::login();
                 //Tạo session user
                 $_SESSION['user'] = $u;
-                Dialog::show("Đăng nhập thành công!!!");
+                Dialog::show("Đăng nhập thành công!!!");//
                 if($u->id_role == 1){
                     header("Location: ./admin/adminhome.php?movie_search=");
                 }
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input name="password" id="pasword" type="password" placeholder="Enter your passowrd" />
                     <? echo "<span class='error'> $passwordError </span> " ?>
                 </div>
-                <div class="remember-me password-forgot">
+                <div class="remember-me password-forgot ">
                     <div class="forgot-password"><a href="./reset-password/password-reset.php">Forgot password?</a></div>
                 </div>
                 <div class="signin">

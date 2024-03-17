@@ -3,7 +3,7 @@ require "../inc/init.php";
 //Bắt buộc phải là tài khoản admin thì mới vào được page admin panel giùm tui nha :)))
 Auth::requireLogin();
 $conn = require('../inc/db.php');
-$name_film = "";
+//$name_film = "";
 $name_film = $_GET['movie_search'];
 $movies = Movie::searchByName($conn, $name_film);
 
@@ -13,12 +13,17 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
   $u = null;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  if (isset($_GET['button-search'])) {
-    header("Location: ./adminhome.php?movie_search=" . $name_film);
+
+if ($u->id_role != 1) {
+  header("Location: index.php");
+} else {
+
+  if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['button-search'])) {
+      header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
+    }
   }
 }
-
 
 ?>
 
@@ -30,10 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>crud dashboard</title>
+  <title>Dashboard</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+  <style>
+    #sidebar ul li.active1>a {
+      color: #4c7cf3;
+      background-color: #DBE5FD;
+    }
 
+    #sidebar ul li.active1>a i {
+      color: #4c7cf3;
+    }
+  </style>
 
 </head>
 
@@ -90,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
                     <li class="nav-item dropdown">
                       <a class="nav-link" href="#" data-toggle="dropdown">
-                        <img src="img/user.jpg" style="width:40px; border-radius:50%;" />
+                        <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                         <span class="xp-user-live"></span>
                       </a>
                       <ul class="dropdown-menu small-menu">
@@ -149,20 +163,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <td><? echo $m->actors ?></td>
                         <td><? echo $m->nation ?></td>
                         <td>
-                          <?php $m->checkImageAdmin()?>       
+                          <?php $m->checkImageAdmin() ?>
                           <img src=<?= "." . $m->imagefile ?> alt="Hình ảnh" alt="" width="100" height="100">
                         </td>
                         <td>
                           <div class="row">
-                              <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
+                            <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                              </a>
-                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
-                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                              </a>
-                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
+                            </a>
+                            <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
+                              <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                            </a>
+                            <!-- <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
                                 Up
-                              </a>
+                              </a> -->
 
                           </div>
                         </td>
@@ -209,15 +223,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       });
     </script>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
 
     <script>
-        $("#datatable").dataTable({
+      $("#datatable").dataTable({
 
-        })
+      })
     </script>
 </body>
 
 </html>
-

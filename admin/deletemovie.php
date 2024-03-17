@@ -4,26 +4,40 @@ require "../inc/init.php";
 Auth::requireLogin();
 $conn = require('../inc/db.php');
 
-//Lấy ra id của phim
-if (isset($_GET['id'])) {
-    $id = $_GET['id']; // read id from index.php
-    $result_film = Movie::getId($conn, $id);
+
+if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
+    $u = $_SESSION['user'];
 } else {
-    Dialog::show("Lỗi!!");
+    $u = null;
 }
 
-//Khi bấm vào nút Có xóa
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id_film = $_GET['id'];
-    $oldimage = $result_film->imagefile;
-    $name = $result_film->name_movie;
-    if ($result_film->deleteById($conn)) {
-        if($oldimage){
-            unlink("." . $oldimage);
+
+if ($u->id_role != 1) {
+    header("Location: index.php");
+} else {
+
+    //Lấy ra id của phim
+    if (isset($_GET['id'])) {
+        $id = $_GET['id']; // read id from index.php
+        $result_film = Movie::getId($conn, $id);
+    } else {
+        Dialog::show("Lỗi!!");
+    }
+
+    //Khi bấm vào nút Có xóa
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $id_film = $_GET['id'];
+        $oldimage = $result_film->imagefile;
+        // $name = $result_film->name_movie;
+        if ($result_film->deleteById($conn)) {
+            if ($oldimage && $oldimage != "./uploads/image.png") {
+                //            unlink("./uploads/" . $oldimage);
+                unlink($oldimage);
+            }
+            header("Location: ./adminhome.php?movie_search=");
+            Dialog::show("Xoá thành công!");
+            return;
         }
-        header("Location: ./adminhome.php?movie_search=");
-        Dialog::show("Xoá thành công!");
-        return;
     }
 }
 
@@ -79,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                         <li class="nav-item dropdown">
                                             <a class="nav-link" href="#" data-toggle="dropdown">
-                                                <img src="img/user.jpg" style="width:40px; border-radius:50%;" />
+                                                <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                                                 <span class="xp-user-live"></span>
                                             </a>
                                             <ul class="dropdown-menu small-menu">
@@ -136,9 +150,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="xp-breadcrumbbar text-center">
                                 <h4 class="page-title">Bạn có xác nhận muốn xóa hay không?</h4>
                                 <form action="" method="post">
-                                    <button class="btn_delete" type="submit" >Có</button>
+                                    <button class="btn_delete" type="submit">Có</button>
                                 </form>
-                                    <button class="btn_delete" type="button"><a href="./adminhome.php?movie_search=">Không</a></button>
+                                <button class="btn_delete" type="button"><a href="./adminhome.php?movie_search=">Không</a></button>
                             </div>
                         </div>
                     </div>

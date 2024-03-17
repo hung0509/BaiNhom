@@ -13,7 +13,7 @@ require './PHPMailer/src/SMTP.php';
 
 
 // class SendMail {
-function sendMailResetPassword($to_email, $mail_subject, $mail_content, $headers)
+function sendMailResetPassword($to_email, $mail_subject, $mail_content, $headers): bool
 {
     $mail = new PHPMailer(true);
     try {
@@ -32,7 +32,7 @@ function sendMailResetPassword($to_email, $mail_subject, $mail_content, $headers
 
 
         //Recipients
-        $mail->setFrom('phongtranhk20@gmail.com'); // nguoi gui
+        $mail->setFrom('Admin@gmail.com'); // nguoi gui
         $mail->addAddress($to_email);     //Add a recipient
 
         //Content
@@ -42,9 +42,12 @@ function sendMailResetPassword($to_email, $mail_subject, $mail_content, $headers
         // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         $mail->send();
+
+        return true;
         // echo 'Message has been sent';
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+//        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        return false;
     }
 }
 // }

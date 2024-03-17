@@ -96,9 +96,6 @@ main #slideshow .img{
 }
 
  .col_4{
-    /* display: flex; */
-    /* justify-content: space-around; */
-    /* padding-top: 20px; */
     width: 24.9999%;
     padding: 8px 8px;
     height: 290px;
@@ -126,17 +123,6 @@ main #slideshow .img{
     transition: 0.5s;
 }
 
-
-/* .col_4:hover img{
-    transform: scale(1.2);
-}
-
-.col_4:hover .name_film{
-    transform: translateY(24px);
-    color: #434343;
-    font-size: 24px;
-} */
-
 .col_4 img::before {
     transition: .5f;
     transform: scale(.9);
@@ -155,9 +141,6 @@ main #slideshow .img{
 
 
 /* css container phim le */
-
-
-
 
 
 #content-container aside{

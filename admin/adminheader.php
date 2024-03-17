@@ -30,15 +30,15 @@
 <body>
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3><img src="img/logo.png" class="img-fluid" /><span>Web phim</span></h3>
+            <h3><img src="../uploads/img/phimmoi.png" class="img-fluid" /><span>Web phim</span></h3>
         </div>
         <ul class="list-unstyled components">
-            <li class="active">
+            <li class="active1">
                 <a href="./adminhome.php?movie_search=" class="dashboard"><i class="material-icons">dashboard</i>
                     <span>Danh sách phim</span></a>
             </li>
 
-            <li class="">
+            <li class="active2">
                 <a href="./addfilm.php"><i class="material-icons">date_range</i><span>Thêm phim</span></a>
             </li>
 

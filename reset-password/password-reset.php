@@ -1,55 +1,74 @@
 <?php
-$message = "";
-$valid = 'true';
-// include("config.php");
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="./../css/stylepasswordreset.css">
-  <title>Forgot Password</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/password_reset.css">
+    <title>Password Reset</title>
 </head>
 
 <body>
-  <div class="container relative">
+<div class="container relative">
     <div class="row">
-      <div class="col-md-4 col-md-offset-4 reset-form" style="background-color: #D2D1D1; border-radius:15px;">
-        <!-- <br><br> -->
-        <div class="logo-reset">
-          <img src="../uploads/logo2.png" alt="GARENA">
-        </div>
-        <form role="form" method="POST" action="./send-token-email.php">
-          <div class="form-group">
-            <label>Please enter your email to recover your password</label><br><br>
-            <input class="form-control" id="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" placeholder="text@gmail.com">
-          </div>
+        <div class="col-md-4 col-md-offset-4 reset-form" style="background-color: #D2D1D1; border-radius:15px;">
+            <!-- <br><br> -->
+            <div class="logo-reset">
+                <img src="../uploads/logo2.png" alt="Logo">
+            </div>
+            <div class="col-md-12 mb-10">
+                <p class="font-bold text-center" style="color:#000">Please enter your email to recover your password</p>
+            </div>
 
-          <?php if (isset($error)) {
-            echo "<div class='alert alert-danger' role='alert'>
-                      <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                      <span class='sr-only'>Error:</span>" . $error . "</div>";
-          } ?>
-          <?php if ($message <> "") {
-            echo "<div class='alert alert-danger' role='alert'>
-                      <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
-                      <span class='sr-only'>Error:</span>" . $message . "</div>";
-          } ?>
-          <?php if (isset($message_success)) {
-            echo "<div class='alert alert-success' role='alert'>
-                      <span class='glyphicon glyphicon-ok' aria-hidden='true'></span>
-                      <span class='sr-only'>Error:</span>" . $message_success . "</div>";
-          } ?>
-          <button type="submit" class="btn btn-primary pull-right" name="submit" style="display: block; width: 100%;">Send Email</button>
-          <br><br>
-          <a href="../login.php" style="display: flex; justify-content: center">Back to Login</a>
-          <br>
-        </form>
-      </div>
+            <form id="form-reset-password" method="POST" action="./send-token-email.php">
+                <div class="form-group mb-10">
+                    <label for="email-reset" class="form-label">Enter your mail:</label>
+                    <input class="form-control" type="email" id="email-reset" name="email" minlength="10" maxlength="50"
+                           value="<?php echo $_POST['email'] ?? ''; ?>" placeholder="text@gmail.com">
+                    <span class="error-text"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary pull-right" name="submit"
+                        style="display: block; width: 100%;">Send Email
+                </button>
+                <br><br>
+                <a href="../login.php" style="display: flex; justify-content: center">Back to login page</a>
+                <br>
+            </form>
+        </div>
     </div>
-  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function($) {
+        $('#email').focus();
+
+         // lay du lieu tu id=email
+        // var bla = $('#txt_name').val()
+        $("#form-reset-password").submit(function (event) {
+
+            // event.preventDefault();
+
+            const email = $("#email-reset").val()
+
+            if (email === "") {
+                // alert("Please enter your email");
+                $("#email").addClass("border-red");
+                $(".error-text").text("Please enter your email");
+                return false;
+            }
+
+            if (email !== "") {
+                $("#email").removeClass("border-red");
+                $(".error-text").text("");
+            }
+            // location.href = "./send-token-email.php?email=" + email
+            // return true
+        });
+    });
+</script>
 </body>
 
 </html>

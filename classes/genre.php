@@ -3,6 +3,11 @@
         public $id_genre;
         public $namegenre;
 
+        public function __toString()
+        {
+            return $this->namegenre;
+        }
+
         public function __construct($id_genre ='', $namegenre ='') {
             if($id_genre != "" && $namegenre != ""){
                 $this->id_genre = $id_genre;
@@ -25,15 +30,15 @@
                 $sql = "select * from genres";
                 $stmt = $conn->prepare($sql);
                 $stmt->setFetchMode(PDO::FETCH_CLASS, 'Genre');
-                $stmt->execute();
-                $g = $stmt->fetchAll();
-                return $g;
+                if($stmt->execute()){
+                    $g = $stmt->fetchAll();
+                    return $g;
+                }
             }catch(PDOException $e){
                 $e->getMessage();
                 return false;
             }
         }
-
         public static function getNamebyID($conn, $id){
             try{
                 $sql = "select namegenre from genres  where id_genre=:id";

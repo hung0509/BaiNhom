@@ -12,11 +12,14 @@ class Movie
 
     private static $instance;
 
+    public function __toString()
+    {
+        return $this->id_movie;
+    }
 
     public function __construct($moviename = '', $nation = '', $description = '', $actors = '', $director = '', $imagefile = '', $movielength = '')
     {
         if ($moviename != '' && $nation != '' && $description != '' && $actors != '' && $director != '' && $imagefile != '' && $movielength != '') {
-            // $this->id_movie = $id_movie;
             $this->moviename = $moviename;
             $this->nation = $nation;
             $this->description = $description;
@@ -78,7 +81,7 @@ class Movie
             $stmt->bindValue(':director', $this->director, PDO::PARAM_STR);
             $stmt->bindValue(':nation', $this->nation, PDO::PARAM_STR);
             $stmt->bindValue(':imagefile', $this->imagefile, PDO::PARAM_STR);
-            $stmt->bindValue(':movielength', $this->movielength, PDO::PARAM_INT);
+            $stmt->bindValue(':movielength', $this->movielength, PDO::PARAM_STR);
 
             return $stmt->execute();
         } else {
@@ -194,7 +197,8 @@ class Movie
         try {
             $sql = "update movies
                        set moviename=:moviename, description=:description,
-                       actors=:actors, nation=:nation, director=:director
+                       actors=:actors, nation=:nation, director=:director,
+                       imagefile=:imagefile
                        where id_movie=:id_movie;";
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':moviename', $this->moviename, PDO::PARAM_STR);
@@ -202,6 +206,8 @@ class Movie
             $stmt->bindValue(':actors', $this->actors, PDO::PARAM_STR);
             $stmt->bindValue(':director', $this->director, PDO::PARAM_STR);
             $stmt->bindValue(':nation', $this->nation, PDO::PARAM_STR);
+            $stmt->bindValue(':imagefile', $this->imagefile, 
+                            $this->imagefile == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
             $stmt->bindValue(':id_movie', $this->id_movie, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -316,6 +322,21 @@ class Movie
                 return $movie;
             }
         } catch (PDOException $e) {
+            $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function belongGenre($conn,$id_film, $id_genre){
+        try{
+            $sql = "insert into moviegenres (id_genre, id_movie) 
+            values (:id_genre, :id_movie);";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id_genre', $id_genre, PDO::PARAM_INT);
+            $stmt->bindValue(':id_movie', $id_film, PDO::PARAM_INT);
+            return $stmt->execute();
+        }catch (PDOException $e) {
             $e->getMessage();
             return false;
         }

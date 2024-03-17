@@ -1,7 +1,7 @@
 body,
 html {
 	line-height: 1.8;
-	font-family: 'Poppins', sans-serif;
+	/* font-family: 'Poppins', sans-serif; */
 	color: #555e58;
 	text-transform: capitalize;
 	font-weight: 400;
@@ -210,15 +210,7 @@ a:focus {
 	padding: 2px 0px;
 }
 
-#sidebar ul li.active>a {
-	color: #4c7cf3;
-	background-color: #DBE5FD;
-}
 
-
-#sidebar ul li.active>a i {
-	color: #4c7cf3;
-}
 
 
 

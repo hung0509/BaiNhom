@@ -131,6 +131,7 @@ if ($u->id_role != 1) {
                                         <li class="nav-item dropdown">
                                             <a class="nav-link" href="#" data-toggle="dropdown">
                                                 <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
+                                                <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                                                 <span class="xp-user-live"></span>
                                             </a>
                                             <ul class="dropdown-menu small-menu">
@@ -162,16 +163,20 @@ if ($u->id_role != 1) {
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>ID</th>
                                         <th>Tên phim</th>
                                         <th>Đạo diễn</th>
                                         <th>Diễn viên</th>
                                         <th>Quốc gia</th>
                                         <th>Mô tả</th>
                                         <th>Ảnh</th>
+                                        <th>Ảnh</th>
                                         <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <form action="" enctype="multipart/form-data" method="post">
+                                        <td><?= $result_film->id_movie ?></td>
                                     <form action="" enctype="multipart/form-data" method="post">
                                         <td><?= $result_film->id_movie ?></td>
                                         <td><input name="moviename" class="edit_film" type="text" value="<?= $result_film->moviename ?>"></td>

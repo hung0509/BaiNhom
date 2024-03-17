@@ -157,20 +157,20 @@ if ($u->id_role != 1) {
 <body>
 
 
-    <div class="wrapper">
-        <div class="body-overlay"></div>
-        <!-------------------------sidebar------------>
-        <!-- Sidebar  -->
-        <? require "./adminheader.php"; ?>
+<div class="wrapper">
+    <div class="body-overlay"></div>
+    <!-------------------------sidebar------------>
+    <!-- Sidebar  -->
+    <? require "./adminheader.php"; ?>
 
-        <!--------page-content---------------->
+    <!--------page-content---------------->
 
-        <div id="content">
+    <div id="content">
 
-            <!--top--navbar----design--------->
+        <!--top--navbar----design--------->
 
-            <div class="top-navbar">
-                <div class="xp-topbar">
+        <div class="top-navbar">
+            <div class="xp-topbar">
 
                     <!-- Start XP Row -->
                     <div class="row">
@@ -309,41 +309,41 @@ if ($u->id_role != 1) {
                                     </form>
                                 </div>
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!---footer---->
+                <!---footer---->
 
                 </div>
             </div>
         </div>
 
 
-        <!----------html code compleate----------->
+    <!----------html code compleate----------->
 
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="../js/jquery-3.3.1.slim.min.js"></script>
-        <script src="../js/popper.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/jquery-3.3.1.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
 
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $(".xp-menubar").on('click', function() {
-                    $('#sidebar').toggleClass('active');
-                    $('#content').toggleClass('active');
-                });
-
-                $(".xp-menubar,.body-overlay").on('click', function() {
-                    $('#sidebar,.body-overlay').toggleClass('show-nav');
-                });
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".xp-menubar").on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
             });
-        </script>
+
+            $(".xp-menubar,.body-overlay").on('click', function () {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+
+        });
+    </script>
 
 
 </body>

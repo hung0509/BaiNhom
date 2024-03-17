@@ -24,20 +24,19 @@ if ($u->id_role != 1) {
         Dialog::show("Lỗi!!");
     }
 
-    //Khi bấm vào nút Có xóa
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $id_film = $_GET['id'];
-        $oldimage = $result_film->imagefile;
-        // $name = $result_film->name_movie;
-        if ($result_film->deleteById($conn)) {
-            if ($oldimage && $oldimage != "./uploads/image.png") {
-                //            unlink("./uploads/" . $oldimage);
-                unlink($oldimage);
-            }
-            header("Location: ./adminhome.php?movie_search=");
-            Dialog::show("Xoá thành công!");
-            return;
+//Khi bấm vào nút Có xóa
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_film = $_GET['id'];
+    $oldimage = $result_film->imagefile;
+    // $name = $result_film->name_movie;
+    if ($result_film->deleteById($conn)) {
+        if($oldimage && $oldimage != "./uploads/image.png"){
+//            unlink("./uploads/" . $oldimage);
+            unlink($oldimage);
         }
+        header("Location: ./adminhome.php?movie_search=");
+        Dialog::show("Xoá thành công!");
+        return;
     }
 }
 
@@ -142,7 +141,10 @@ if ($u->id_role != 1) {
                                         <td><input name="nation" class="edit_film" type="text" value="<?= $result_film->nation ?>"></td>
                                         <td><textarea type="text" name="description" class="edit_film"><?= $result_film->description ?></textarea></td>
                                         <td>
-                                            <div><img src=<?= "." . $result_film->imagefile ?> alt="" width="100" height="100"></div>
+                                            <div>
+                                                <?php $result_film->checkImageAdmin()?>       
+                                                <img src=<?= "." . $result_film->imagefile ?> alt="Hình ảnh" alt="" width="100" height="100">
+                                            </div>
                                         </td>
                                 </tbody>
 

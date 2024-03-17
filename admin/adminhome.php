@@ -4,6 +4,7 @@ require "../inc/init.php";
 Auth::requireLogin();
 $conn = require('../inc/db.php');
 //$name_film = "";
+//$name_film = "";
 $name_film = $_GET['movie_search'];
 $movies = Movie::searchByName($conn, $name_film);
 
@@ -18,6 +19,9 @@ if ($u->id_role != 1) {
   header("Location: index.php");
 } else {
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+  if (isset($_GET['button-search'])) {
+    header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['button-search'])) {
       header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
@@ -36,14 +40,24 @@ if ($u->id_role != 1) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>Dashboard</title>
+  <title>Dashboard</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+<style>
+    #sidebar ul li.active1>a {
+        color: #4c7cf3;
+        background-color: #DBE5FD;
+    }
   <style>
     #sidebar ul li.active1>a {
       color: #4c7cf3;
       background-color: #DBE5FD;
     }
 
+    #sidebar ul li.active1>a i {
+        color: #4c7cf3;
+    }
+</style>
     #sidebar ul li.active1>a i {
       color: #4c7cf3;
     }
@@ -104,6 +118,7 @@ if ($u->id_role != 1) {
 
                     <li class="nav-item dropdown">
                       <a class="nav-link" href="#" data-toggle="dropdown">
+                        <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                         <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                         <span class="xp-user-live"></span>
                       </a>
@@ -170,12 +185,18 @@ if ($u->id_role != 1) {
                           <div class="row">
                             <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                              </a>
+                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
+                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                              </a>
+                              <!-- <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
                             </a>
                             <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                             </a>
                             <!-- <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
                                 Up
+                              </a> -->
                               </a> -->
 
                           </div>

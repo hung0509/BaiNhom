@@ -11,7 +11,7 @@
                 $valueJS = $_GET['bienjs'];
 
                 $conn = require "./inc/db.php";
-                $newUser = new User($username, $password, $firstname, $lastname, $email, 2);
+                $newUser = new User($username, $password, $email, $firstname, $lastname, 2);
                 $check = $newUser->addUser($conn) ;
                 if($check && $valueJS){
                     header('location: ./index.php');

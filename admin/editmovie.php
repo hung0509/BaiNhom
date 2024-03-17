@@ -36,10 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // gan ten file moi
             $result_film->imagefile = "./uploads/".$fullname;
             if($result_film->update($conn)){
-                if($oldimage){
+                if($oldimage === "./uploads/image.png"){
+                    header("Location: adminhome.php");
+                } else{
                     unlink(".$oldimage");
                 }
-                header("Location: adminhome.php");
+                
             }
         } else{
             if($result_film->update($conn)){

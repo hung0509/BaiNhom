@@ -181,13 +181,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="row">
 
                                                 <button onclick="return save()" type="submit" name="btn_save" id="btn_save" class="btn" >
-                                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i> 
+                                                <i class="material-icons" data-toggle="tooltip" title="Save">&#xE254;</i> 
                                                  </button>
                                                 <!--  -->
                                                 <input type="hidden" name="bienjs2" id="bienjs2" value="helo" />
                                         </form>
                                     <button onclick="cancel()" type="button" name="btn_cancel" id="btn_cancel" class="btn">
-                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#11199;</i>
+                                        <i class="material-icons" data-toggle="tooltip" title="Cancel">&#11199;</i>
                                     </button>
 
                         </div>

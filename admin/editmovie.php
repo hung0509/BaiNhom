@@ -174,14 +174,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <td><input name="actors" class="edit_film" type="text" value="<?= $result_film->actors ?>"></td>
                                         <td><input name="nation" class="edit_film" type="text" value="<?= $result_film->nation ?>"></td>
                                         <td><textarea style="height: 208px; width: 142px;"  type="text" name="description" class="edit_film"><?= $result_film->description?></textarea></td>
-                                        <td><img src= <?= "." . $result_film->imagefile ?> alt="Hình ảnh" style="height: 150px; width: 100px;">
+                                        <td><img src= <?php $result_film->checkImageAdmin()?>       
+                                               <?= "." . $result_film->imagefile ?> alt="Hình ảnh" alt="" width="100" height="150">
                                             <input name="imagefile" class="bt-chosefile" type="file" style="border-radius: 4px;"></input>
                                         </td>
                                         <td>
                                             <div class="row">
 
                                                 <button onclick="return save()" type="submit" name="btn_save" id="btn_save" class="btn" >
-                                                <i class="material-icons" data-toggle="tooltip" title="Save">&#xE254;</i> 
+                                                <i class="material-icons" data-toggle="tooltip" title="S">&#xE254;</i> 
                                                  </button>
                                                 <!--  -->
                                                 <input type="hidden" name="bienjs2" id="bienjs2" value="helo" />

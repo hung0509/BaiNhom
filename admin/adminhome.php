@@ -29,6 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 }
 
+}
+}
+
 ?>
 
 <!doctype html>
@@ -48,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         color: #4c7cf3;
         background-color: #DBE5FD;
     }
-  <style>
+
     #sidebar ul li.active1>a {
       color: #4c7cf3;
       background-color: #DBE5FD;
@@ -57,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     #sidebar ul li.active1>a i {
         color: #4c7cf3;
     }
-</style>
+
     #sidebar ul li.active1>a i {
       color: #4c7cf3;
     }
@@ -118,7 +121,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
                     <li class="nav-item dropdown">
                       <a class="nav-link" href="#" data-toggle="dropdown">
-                        <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                         <img src="../uploads/img/user.png" style="width:40px; border-radius:50%;" />
                         <span class="xp-user-live"></span>
                       </a>
@@ -194,9 +196,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                             </a>
-                            <!-- <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
+                             <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
                                 Up
-                              </a> -->
+                              </a> 
                               </a> -->
 
                           </div>

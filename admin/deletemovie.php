@@ -23,7 +23,7 @@ if ($u->id_role != 1) {
     } else {
         Dialog::show("Lỗi!!");
     }
-
+}
 //Khi bấm vào nút Có xóa
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_film = $_GET['id'];

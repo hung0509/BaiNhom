@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($movie->addMovie($conn)) {
                 header("Location: ./adminhome.php?movie_search=");
             } else {
-                unlink("./uploads/$imageName");
+                unlink("../uploads/$imageName");
                 Dialog::show(implode(",", $errors));
             }
 

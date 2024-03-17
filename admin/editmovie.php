@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result_film->imagefile = "./uploads/".$fullname;
             if($result_film->update($conn)){
                 if($oldimage){
-                    unlink($oldimage);
+                    unlink(".$oldimage");
                 }
                 header("Location: adminhome.php");
             }
@@ -50,20 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } catch ( PDOException $e) {
         Dialog::show($e->getMessage());
     }
-
-   
-
-    // goij caapj nhaapj
-    // if ($result_film->update($conn)) {
-    //     header("Location: ./adminhome.php?movie_search=");
-    // }
-
-    // $result = $result_film->update($conn);
-    // if($result){
-    //  // true   
-    // }else{
-    //     // false
-    // }
 }
 ?>
 

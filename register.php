@@ -15,6 +15,8 @@
                 $check = $newUser->addUser($conn) ;
                 if($check && $valueJS){
                     header('location: ./index.php');
+                }else{
+                    Dialog::show("Đã tồn tại tài khoản này");
                 }
             }
         }

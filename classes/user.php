@@ -42,10 +42,11 @@ class User
             $stmt->execute();
             $user = $stmt->fetch();
 
-            if (strlen($user) > 0) { // Có tồn tại
-                return false;
+            if(empty($user)){
+                return true;
             }
-            return true; //Không tồn tại
+            return false;
+
         } catch (PDOException $e) {
             $e->getMessage();
             return false;

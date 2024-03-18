@@ -16,7 +16,7 @@
                 if($check && $valueJS){
                     header('location: ./index.php');
                 }else{
-                    Dialog::show("Đã tồn tại tài khoản này");
+                    Dialog::show("Đã tồn tại tài khoản này");   
                 }
             }
         }
@@ -39,7 +39,6 @@
             <center>
                 <h1 class="form-tittle"> CREATE ACCOUNT </h1>
             </center>
-            <!-- onsubmit ="return false" -->
             <form name="create-account-form" id="create-account-form" action="" method="get">
                 <div class="name">
                     <div class="firstname">
@@ -48,8 +47,6 @@
                             <input name="firstname" type="text" id="firstname" class="input" placeholder="Your first name:">
                             <small>Error Message</small>
                         </div>
-                        <? //echo "<span class='error'> $firstNameError </span>"
-                        ?>
                     </div>
                     <div class="lastname">
                         <label> Last Name</label> <br>
@@ -57,9 +54,6 @@
                             <input name="lastname" type="text" id="lastname" class="input" placeholder="Your last name:">
                             <small>Error Message</small>
                         </div>
-
-                        <? //echo "<span class='error'> $lastNameError </span>"
-                        ?>
                     </div>
                 </div>
 
@@ -71,9 +65,6 @@
                             <input name="email" id="email" type="text" class="input" placeholder="text@gmail.com">
                             <small>Error Message</small>
                         </div>
-
-                        <? //echo "<span class='error'> $emailError </span> "
-                        ?>
                     </div>
 
                     <div class="form-control">
@@ -82,9 +73,6 @@
                             <input name="username" id="username" type="text" class="input" placeholder="Username:">
                             <small>Error Message</small>
                         </div>
-
-                        <? //echo "<span class='error'> $userNameError </span> "
-                        ?>
                     </div>
 
                     <div class="form-control">
@@ -93,9 +81,6 @@
                             <input name="password" id="password" type="password" class="input" placeholder="Password:">
                             <small>Error Message</small>
                         </div>
-
-                        <? //echo "<span class='error'> $passwordError </span> "
-                        ?>
                     </div>
 
                     <div class="form-control">
@@ -104,9 +89,6 @@
                             <input id="repassword" name="repassword" type="password" class="input" placeholder="Confirm password:">
                             <small>Error Message</small>
                         </div>
-
-                        <? //echo "<span class='error'> $repasswordError </span> "
-                        ?>
                     </div>
                 </div>
 

@@ -30,12 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <header id="header">
         <div class="header-logo">
             <div class="logo">
-                <a href="./index.php"><img src="./uploads/logo2.png" class="img-fluid"/></a>
+                <a href="./index.php"><img src="./uploads/logo2.png" class="img-fluid" /></a>
             </div>
         </div>
         <div class="header-menu">
-        <ul class="menu">
-            
+            <ul class="menu">
+
                 <li><a href="./index.php">Trang chủ</a></li>
                 <li class='type_menubar'>
                     <a href="#">Thể loại</a>
@@ -83,42 +83,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
         <div class="header-search">
             <div class="box-search">
-            <form action="">
-                <input type="text" list="topics" name="search" id="search" placeholder="Tìm kiếm....">
-                <datalist id="topics">
-                                <?php for ($i = 0; $i < count($all_film); $i++) : ?>
-                                    <? $name_film = $all_film[$i]->moviename ?>
-                                    <option value="<?= $name_film ?>">
-                                    <?php endfor; ?>
-                            </datalist>
-                <button class="search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
+                <form action="">
+                    <input type="text" list="topics" name="search" id="search" placeholder="Tìm kiếm....">
+                    <datalist id="topics">
+                        <?php for ($i = 0; $i < count($all_film); $i++) : ?>
+                            <? $name_film = $all_film[$i]->moviename ?>
+                            <option value="<?= $name_film ?>">
+                            <?php endfor; ?>
+                    </datalist>
+                    <button class="search_button" name="button-search" type="submit"><i class='bx bx-search'></i></button>
             </div>
             </form>
         </div>
         <div class="header-login">
             <?php if (Auth::isLoggedIn()) : ?>
                 <div class="logout_user" style="height: 100%;">
-                <!-- đường dẫn thông tin ?-->
-                            
-                    <a href="" ><i class='bx bx-user'></i><?= $u->getName() ?></a>
-                        <div class="box-login logout">
-                            <a id="logout" href="./logout.php">Đăng xuất</a>
-                        </div>
+                    <!-- đường dẫn thông tin ?-->
+
+                    <a href=""><i class='bx bx-user'></i><?= $u->getName() ?></a>
+                    <div class="box-login logout">
+                        <a id="logout" href="./logout.php">Đăng xuất</a>
+                    </div>
                 </div>
 
-                <?php else : ?>
-                    <div class="box-login">
-                        <a href="./login.php">Đăng nhập</a>/<a href="./register.php">Đăng ký</a>
-                    </div>
-                    <?php endif; ?>
-            
+            <?php else : ?>
+                <div class="box-login">
+                    <a href="./login.php">Đăng nhập</a>/<a href="./register.php">Đăng ký</a>
+                </div>
+            <?php endif; ?>
+
         </div>
 
-     
+
     </header>
-    
-   
-
-
 
 </body>

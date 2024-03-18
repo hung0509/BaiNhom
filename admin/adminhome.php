@@ -3,8 +3,6 @@ require "../inc/init.php";
 //Bắt buộc phải là tài khoản admin thì mới vào được page admin panel giùm tui nha :)))
 Auth::requireLogin();
 $conn = require('../inc/db.php');
-//$name_film = "";
-//$name_film = "";
 $name_film = $_GET['movie_search'];
 $movies = Movie::searchByName($conn, $name_film);
 
@@ -16,20 +14,19 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 
 
 if ($u->id_role != 1) {
-  header("Location: index.php");
+  header("Location: ../404.php?error=" . "Not enough permissions");
 } else {
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  if (isset($_GET['button-search'])) {
-    header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['button-search'])) {
       header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
+      if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        if (isset($_GET['button-search'])) {
+          header("Location: ./adminhome.php?movie_search=" . $name_film ? $name_film : "");
+        }
+      }
     }
   }
-}
-
-}
 }
 
 ?>
@@ -46,13 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <title>Dashboard</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
-<style>
+  <style>
     #sidebar ul li.active1>a {
-        color: #4c7cf3;
-        background-color: #DBE5FD;
+      color: #4c7cf3;
+      background-color: #DBE5FD;
     }
+
     #sidebar ul li.active1>a i {
-        color: #4c7cf3;
+      color: #4c7cf3;
 
     }
   </style>
@@ -178,20 +176,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                           <div class="row">
                             <a href="editmovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                              </a>
-                              <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
-                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                              </a>
-                              <!-- <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
                             </a>
                             <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" name="btn_remove" type="submit" class="btn">
                               <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                             </a>
-                             <a href="./deletemovie.php?id=<?= htmlspecialchars($m->id_movie) ?>" type="submit" class="btn">
-                                Up
-                              </a> 
-                              </a> -->
-
                           </div>
                         </td>
                       </tr>

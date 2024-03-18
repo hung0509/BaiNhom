@@ -56,7 +56,7 @@ class Movie
     }
 
     // truong bat buoc nhap va khong duoc null
-    private function validate(): bool
+    private function validate()
     {
         return $this->moviename
             && $this->nation
@@ -225,6 +225,7 @@ class Movie
             if ($stmt->execute()) {
                 return true;
             }
+            return false;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
@@ -305,17 +306,11 @@ class Movie
     public static function getPagingByNation($conn, $limit, $offset, $nation)
     {
         try {
-            // Hiển thị limit record từ dòng offer
-            // $sql = "select * from movies where nation=:nation order by moviename asc
-            //     limit :limit 
-            //     offset :offset;";
                 $sql = "select * from movies where nation=:nation order by moviename asc
                 ";
 
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':nation', $nation, PDO::PARAM_STR);
-            // $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-            // $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Movie');
             if ($stmt->execute()) {
                 $movie = $stmt->fetchAll();

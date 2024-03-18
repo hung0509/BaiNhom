@@ -13,7 +13,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 
 
 if ($u->id_role != 1) {
-    header("Location: index.php");
+    header("Location: ../404.php?error=" . "Not enough permissions");
 } else {
 
     //Lấy ra id của phim
@@ -28,10 +28,9 @@ if ($u->id_role != 1) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_film = $_GET['id'];
     $oldimage = $result_film->imagefile;
-    // $name = $result_film->name_movie;
     if ($result_film->deleteById($conn)) {
-        if($oldimage && $oldimage != "./uploads/image.png"){
-//            unlink("./uploads/" . $oldimage);
+        if ($oldimage && $oldimage != "./uploads/image.png") {
+            //            unlink("./uploads/" . $oldimage);
             unlink($oldimage);
         }
         header("Location: ./adminhome.php?movie_search=");
@@ -77,10 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </span>
                             </div>
                         </div>
-                        <!-- End XP Col -->
-
-                        <!-- Start XP Col -->
-
                         <!-- End XP Col -->
 
                         <!-- Start XP Col -->
@@ -142,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <td><textarea type="text" name="description" class="edit_film"><?= $result_film->description ?></textarea></td>
                                         <td>
                                             <div>
-                                                <?php $result_film->checkImageAdmin()?>       
+                                                <?php $result_film->checkImageAdmin() ?>
                                                 <img src=<?= "." . $result_film->imagefile ?> alt="Hình ảnh" alt="" width="100" height="100">
                                             </div>
                                         </td>

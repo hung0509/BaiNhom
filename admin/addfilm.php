@@ -15,7 +15,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 }
 
 if ($u->id_role != 1) {
-    header("Location: index.php");
+    header("Location: ../404.php?error="."Not enough permissions");
 } else {
 
     // xu ly khi submit form add movie
@@ -90,11 +90,6 @@ if ($u->id_role != 1) {
 
         if (!$errors) {
             try {
-                //            $imageName = Uploadfile::process();
-
-                //            if($imageName == null){
-                //                $imageName = "image.png";
-                //            }
                 $imageName = Uploadfile::process() ?? "image.png";  // ?? is null coalescing operator
                 $imagefile = "./uploads/" . $imageName;
                 // khoi tao 1 doi tuong movie - Đúng thứ tự
@@ -125,8 +120,6 @@ if ($u->id_role != 1) {
         }
     }
 }
-
-
 ?>
 
 <!doctype html>

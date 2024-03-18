@@ -13,7 +13,7 @@ if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
 
 
 if ($u->id_role != 1) {
-    header("Location: index.php");
+    header("Location: ../404.php?error=" . "Not enough permissions");
 } else {
 
 
@@ -115,10 +115,6 @@ if ($u->id_role != 1) {
                                 </span>
                             </div>
                         </div>
-                        <!-- End XP Col -->
-
-                        <!-- Start XP Col -->
-
                         <!-- End XP Col -->
 
                         <!-- Start XP Col -->

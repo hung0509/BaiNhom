@@ -1,9 +1,4 @@
 <?
-    // define('DB_HOST', 'localhost');
-    // define('DB_NAME', '');
-    // define('DB_USER', '');
-    // define('DB_PASS', 'admin');
-
     if (!defined('DB_HOST')) {
         define('DB_HOST', 'localhost');
       }

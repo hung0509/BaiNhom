@@ -4,9 +4,9 @@ class User
     public $id_user;
     public $username;
     public $password;
-    private $email;
-    private $firstname;
-    private $lastname;
+    public $email;
+    public $firstname;
+    public $lastname;
     public $id_role;
 
 
@@ -77,6 +77,23 @@ class User
                 return false;
             }
         } catch (PDOException $e) {
+            $e->getMessage();
+            return false;
+        }
+    }
+    
+
+    public function editUser($conn, $password){
+        try{
+            $sql = "update users SET password=:password,firstname=:firstname,lastname=:lastname where id_user=:id_user";
+            $stmt = $conn->prepare($sql);
+            
+            $stmt->bindValue(':password', $password, PDO::PARAM_STR);
+            $stmt->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+            $stmt->bindValue(':lastname', $this->lastname, PDO::PARAM_STR);
+            $stmt->bindValue(':id_user', $this->id_user, PDO::PARAM_INT);
+            return $stmt->execute();
+        }catch(PDOException $e){
             $e->getMessage();
             return false;
         }

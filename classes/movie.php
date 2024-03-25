@@ -240,7 +240,7 @@ class Movie
         try {
             $sql = "select count(id_movie) from movies;";
             return $conn->query($sql)->fetchColumn();
-        } catch (PDOException $e) {
+        } catch (PDOException $e) { 
             $e->getMessage();
             return false;
         }

@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 <div class="logout_user" style="height: 100%;">
                     <!-- đường dẫn thông tin ?-->
 
-                    <a href=""><i class='bx bx-user'></i><?= $u->getName() ?></a>
+                    <a href="./editUser.php"><i class='bx bx-user'></i><?= $u->getName() ?></a>
                     <div class="box-login logout">
                         <a id="logout" href="./logout.php">Đăng xuất</a>
                     </div>

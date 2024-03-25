@@ -21,7 +21,6 @@ session_start();
             <div class="col-md-12 mb-10">
                 <p class="font-bold text-center" style="color:#000">Please enter your email to recover your password</p>
             </div>
-
             <form id="form-reset-password" method="POST" action="./send-token-email.php">
                 <div class="form-group mb-10">
                     <label for="email-reset" class="form-label">Enter your mail:</label>

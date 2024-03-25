@@ -10,6 +10,8 @@
                 $email = $_GET['email'];
                 $valueJS = $_GET['bienjs'];
 
+//                die($password);
+
                 $conn = require "./inc/db.php";
                 $newUser = new User($username, $password, $email, $firstname, $lastname, 2);
                 $check = $newUser->addUser($conn) ;

@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         $conn = require "./inc/db.php";
         if ($conn && $check) {
+//            die($password);
             $u = User::authenticate($conn, $username, $password);
             if($u){
                 // Tạo session logged_in

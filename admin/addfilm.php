@@ -285,12 +285,14 @@ if ($u->id_role != 1) {
                                             <div class="row">
                                                 <label>Thể loại phim:</label>
                                                 <? $i = 1; ?>
+                                                <ul>
                                                 <?php foreach ($listGenre as $item) : ?>
                                                     <div>
-                                                        <input type="checkbox" name="listG[]" value="<?= $i ?>" /><?= $item ?>
+                                                        <li><input type="checkbox" name="listG[]" value="<?= $i ?>" /><?= $item ?></li>
                                                         <? $i = $i + 1; ?>
                                                     </div>
                                                 <?php endforeach; ?>
+                                                </ul>
                                             </div>
                                             <div class="btn">
                                                 <input type="submit" value="Thêm phim" />

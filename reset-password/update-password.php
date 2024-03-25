@@ -68,7 +68,8 @@ if (isset($_POST['confirm_password']) && $_POST['reset_link_token'] && $_POST['e
             return;
         }
 
-        $password = md5($password);
+//        $password = md5($password);
+        $password =password_hash($password, PASSWORD_DEFAULT);
 
         // mysqli_query($conn, "UPDATE users set  password='" . $password . "', reset_link_token='" . '' . "', expiry_date='" . NULL . "' WHERE email='" . $email . "'");
         // echo '<p>Your password has been updated successfully.</p>';
@@ -85,7 +86,8 @@ if (isset($_POST['confirm_password']) && $_POST['reset_link_token'] && $_POST['e
 
         try {
             $stmt1->execute();
-            return "Update password successful. Please <a href='../login.php'>Log in</a> to continue.";
+            echo "<p>Your password has been updated successfully. Please <a href='../login.php'>Log in</a> to continue.</p>";
+//            return "Update password successful. Please <a href='../login.php'>Log in</a> to continue.";
         } catch (PDOException $e) {
             die("Error executing update query: " . $e->getMessage());
         }
